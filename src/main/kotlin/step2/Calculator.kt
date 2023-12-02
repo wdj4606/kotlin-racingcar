@@ -1,88 +1,52 @@
 package step2
 
-fun calculate(data: String?): String {
-    checkData(data)
+object Calculator {
+    fun calculate(data: String?): String {
+        val checkedData = Checker.checkData(data)
 
-    val calcItems = ArrayList<String>(data!!.split(" "))
-    val calcCount = (calcItems.size - 1) / 2
+        val calcItems: MutableList<String> = checkedData.split(" ").toMutableList()
+        val calcCount = (calcItems.size - 1) / 2
 
-    for (i in 0 until calcCount) {
-        val number1 = calcItems.first().toDouble()
-        calcItems.removeFirst()
+        for (i in 0 until calcCount) {
+            val number1 = calcItems.first().toInt()
+            calcItems.removeFirst()
 
-        val operator = calcItems.first()
-        calcItems.removeFirst()
+            val operator = calcItems.first()
+            calcItems.removeFirst()
 
-        val number2 = calcItems.first().toDouble()
+            val number2 = calcItems.first().toInt()
 
-        calcItems[0] = calcData(number1, number2, operator).toString()
+            calcItems[0] = calcData(number1, number2, operator).toString()
+        }
+
+        return calcItems[0]
     }
 
-    return calcItems[0]
-}
+    fun calcData(number1: Int, number2: Int, operator: String): Int {
+        if (operator == Opt.ADD.opt) {
+            return add(number1, number2)
+        } else if (operator == Opt.SUBTRACT.opt) {
+            return subtract(number1, number2)
+        } else if (operator == Opt.MULTIPLY.opt) {
+            return multiply(number1, number2)
+        }
 
-fun calcData(number1: Double, number2: Double, operator: String): Double {
-    if (operator == "+") {
-        return add(number1, number2)
-    } else if (operator == "-") {
-        return subtract(number1, number2)
-    } else if (operator == "*") {
-        return multiply(number1, number2)
+        return divide(number1, number2)
     }
 
-    return divide(number1, number2)
-}
-
-fun checkData(data: String?): Boolean {
-    if (data === null || data == "")
-        throw IllegalArgumentException()
-
-    val calcItems = data.split(" ")
-    for ((index, calcItem) in calcItems.withIndex()) {
-        checkItem(index, calcItem)
+    fun add(number1: Int, number2: Int): Int {
+        return number1 + number2
     }
 
-    return true
-}
-
-fun checkItem(index: Int, calcItem: String): Boolean {
-    if (index % 2 == 0) {
-        return isNumeric(calcItem)
+    fun subtract(number1: Int, number2: Int): Int {
+        return number1 - number2
     }
 
-    return isOperator(calcItem)
-}
-
-fun isNumeric(s: String): Boolean {
-    return try {
-        s.toDouble()
-        true
-    } catch (e: NumberFormatException) {
-        throw e
+    fun multiply(number1: Int, number2: Int): Int {
+        return number1 * number2
     }
-}
 
-fun isOperator(operatorItem: String): Boolean {
-    val operators: Array<String> = arrayOf("+", "-", "*", "/")
-
-    if (operators.contains(operatorItem))
-        return true
-
-    throw IllegalArgumentException()
-}
-
-fun add(number1: Double, number2: Double): Double {
-    return number1 + number2
-}
-
-fun subtract(number1: Double, number2: Double): Double {
-    return number1 - number2
-}
-
-fun multiply(number1: Double, number2: Double): Double {
-    return number1 * number2
-}
-
-fun divide(number1: Double, number2: Double): Double {
-    return number1 / number2
+    fun divide(number1: Int, number2: Int): Int {
+        return number1 / number2
+    }
 }
