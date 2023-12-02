@@ -23,30 +23,12 @@ object Calculator {
     }
 
     fun calcData(number1: Int, number2: Int, operator: String): Int {
-        if (operator == Opt.ADD.opt) {
-            return add(number1, number2)
-        } else if (operator == Opt.SUBTRACT.opt) {
-            return subtract(number1, number2)
-        } else if (operator == Opt.MULTIPLY.opt) {
-            return multiply(number1, number2)
+        return when (operator) {
+            Opt.ADD.opt -> return number1 + number2
+            Opt.SUBTRACT.opt -> return number1 - number2
+            Opt.MULTIPLY.opt -> return number1 * number2
+            Opt.DIVIDE.opt -> return number1 / number2
+            else -> throw IllegalArgumentException()
         }
-
-        return divide(number1, number2)
-    }
-
-    fun add(number1: Int, number2: Int): Int {
-        return number1 + number2
-    }
-
-    fun subtract(number1: Int, number2: Int): Int {
-        return number1 - number2
-    }
-
-    fun multiply(number1: Int, number2: Int): Int {
-        return number1 * number2
-    }
-
-    fun divide(number1: Int, number2: Int): Int {
-        return number1 / number2
     }
 }
