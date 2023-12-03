@@ -11,8 +11,8 @@ object Calculator {
 
         var result: Int = arrayDeque.removeFirst().toInt()
         while (arrayDeque.size > 0) {
-            val operator = arrayDeque.removeFirst()
-            val second = arrayDeque.removeFirst().toInt()
+            val operator: String = arrayDeque.removeFirst()
+            val second: Int = arrayDeque.removeFirst().toInt()
 
             result = Operator.from(operator).apply(result, second)
         }
