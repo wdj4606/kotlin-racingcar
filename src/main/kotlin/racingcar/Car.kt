@@ -1,12 +1,14 @@
 package racingcar
 
 class Car(
+    val name: String,
     var position: Int = DEFAULT_POSITION,
     private var engine: CarEngine = CarEngine()
 ) {
 
     fun race() {
-        if (engine.canMove()) move()
+        if (engine.canMove())
+            move()
     }
 
     private fun move() {

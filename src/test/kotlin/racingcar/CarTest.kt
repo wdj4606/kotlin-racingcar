@@ -10,7 +10,7 @@ class CarTest {
     fun `자동차 이동 테스트 갈 수 있을 때`() {
         val engine = mockk<CarEngine>()
         every { engine.canMove() } returns true
-        val car = Car(engine = engine)
+        val car = Car(name = "name", engine = engine)
 
         for (i in 0..99) {
             car.race()
@@ -22,7 +22,7 @@ class CarTest {
     fun `자동차 이동 테스트 갈 수 없을 때`() {
         val engine = mockk<CarEngine>()
         every { engine.canMove() } returns false
-        val car = Car(engine = engine)
+        val car = Car(name = "name", engine = engine)
 
         for (i in 0..99) {
             car.race()

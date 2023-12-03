@@ -1,8 +1,8 @@
 package racingcar
 
 class Race(
-    carNum: Int,
-    val cars: List<Car> = List(carNum) { Car() }
+    carNames: List<String>,
+    val cars: List<Car> = carNames.map { Car(it) }
 ) {
 
     fun race() {

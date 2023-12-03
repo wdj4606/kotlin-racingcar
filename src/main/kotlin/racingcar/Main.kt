@@ -9,7 +9,7 @@ fun main() {
 
     inputView.input()
 
-    val race = Race(inputView.carNum)
+    val race = Race(inputView.carNames)
 
     repeat(inputView.tryNum) {
         race.race()
