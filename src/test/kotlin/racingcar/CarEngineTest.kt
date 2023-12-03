@@ -6,6 +6,7 @@ import io.mockk.unmockkAll
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.RepeatedTest
+import racingcar.domain.CarEngine
 import kotlin.random.Random
 
 class CarEngineTest {

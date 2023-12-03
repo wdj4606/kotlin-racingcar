@@ -1,4 +1,4 @@
-package racingcar.ui
+package racingcar.view
 
 class InputView {
     var carNames: List<String> = emptyList()

@@ -1,7 +1,7 @@
-package racingcar.ui
+package racingcar.view
 
-import racingcar.Car
-import racingcar.Race
+import racingcar.domain.Car
+import racingcar.domain.Race
 
 class ResultView {
     fun printCarPosition(race: Race) {

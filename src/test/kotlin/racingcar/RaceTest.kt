@@ -7,6 +7,8 @@ import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import racingcar.domain.Car
+import racingcar.domain.Race
 
 @ExtendWith(MockKExtension::class)
 class RaceTest {
