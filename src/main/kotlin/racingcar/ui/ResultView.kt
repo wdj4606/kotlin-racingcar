@@ -4,15 +4,21 @@ import racingcar.Car
 import racingcar.Race
 
 class ResultView {
-    fun print(race: Race) {
-        race.cars.forEach { print(it) }
+    fun printCarPosition(race: Race) {
+        race.cars.forEach { printCarPosition(it) }
         println()
     }
 
-    private fun print(car: Car) {
+    private fun printCarPosition(car: Car) {
+        print("${car.name} : ")
         repeat(car.position + 1) {
             print("-")
         }
         println()
+    }
+
+    fun printWinner(race: Race) {
+        val winnerNames = race.getWinners().joinToString(",") { it.name }
+        println("$winnerNames is winner!")
     }
 }

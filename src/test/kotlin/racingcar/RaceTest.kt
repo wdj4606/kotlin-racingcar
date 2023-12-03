@@ -1,5 +1,6 @@
 package racingcar
 
+import io.mockk.every
 import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
 import io.mockk.verify
@@ -29,5 +30,19 @@ class RaceTest {
         race.race()
 
         verify(exactly = 3) { carClass.race() }
+    }
+
+    @Test
+    fun `우승한 자동차 조회 확인`() {
+        val carGo = mockk<Car>(relaxed = true)
+        every { carGo.position } returns 10
+        val carStop = mockk<Car>(relaxed = true)
+        every { carStop.position } returns 5
+        val race = Race(
+            listOf("a", "b", "c", "d"),
+            listOf(carGo, carGo, carStop, carStop)
+        )
+        val winners = race.getWinners()
+        assertThat(winners.size).isEqualTo(2)
     }
 }

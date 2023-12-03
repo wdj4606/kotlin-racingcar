@@ -14,6 +14,7 @@ fun main() {
     repeat(inputView.tryNum) {
         race.race()
 
-        resultView.print(race)
+        resultView.printCarPosition(race)
     }
+    resultView.printWinner(race)
 }
