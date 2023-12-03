@@ -7,13 +7,12 @@ object Calculator {
             throw IllegalArgumentException("계산식이 비어있습니다.")
         }
 
-        val arrayDeque = ArrayDeque<Any>()
-        arrayDeque.addAll(calculateValues.split(" "))
+        val arrayDeque: ArrayDeque<String> = ArrayDeque(calculateValues.split(" "))
 
-        var result: Int = arrayDeque.removeFirst().toString().toInt()
+        var result: Int = arrayDeque.removeFirst().toInt()
         while (arrayDeque.size > 0) {
-            val operator = arrayDeque.removeFirstOrNull().toString()
-            val second = arrayDeque.removeFirst().toString().toInt()
+            val operator = arrayDeque.removeFirst()
+            val second = arrayDeque.removeFirst().toInt()
 
             result = Operator.from(operator).apply(result, second)
         }
