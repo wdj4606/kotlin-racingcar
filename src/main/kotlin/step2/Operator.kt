@@ -1,31 +1,24 @@
 package step2
 
-interface OperatorExecutor {
-    fun apply(x: Int, y: Int): Int
-}
+import java.util.function.BinaryOperator
+import java.util.function.IntBinaryOperator
 
-enum class Operator(val symbol: String) : OperatorExecutor {
+enum class Operator(val symbol: String) : BinaryOperator<Int>, IntBinaryOperator {
 
     PLUS("+") {
-        override fun apply(x: Int, y: Int): Int {
-            return x.plus(y)
-        }
+        override fun apply(x: Int, y: Int): Int = x.plus(y)
     },
     MINUS("-") {
-        override fun apply(x: Int, y: Int): Int {
-            return x.minus(y)
-        }
+        override fun apply(x: Int, y: Int): Int = x.minus(y)
     },
     MULTIPLY("*") {
-        override fun apply(x: Int, y: Int): Int {
-            return x.times(y)
-        }
+        override fun apply(x: Int, y: Int): Int = x.times(y)
     },
     DIVIDE("/") {
-        override fun apply(x: Int, y: Int): Int {
-            return x.div(y)
-        }
+        override fun apply(x: Int, y: Int): Int = x.div(y)
     };
+
+    override fun applyAsInt(left: Int, right: Int): Int = apply(left, right)
 
     companion object {
         fun from(symbol: String): Operator {
