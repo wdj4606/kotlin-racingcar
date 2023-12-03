@@ -7,18 +7,10 @@ object CarRacing {
         carList = MutableList(carCount) { i -> "" }
     }
 
-    fun startGame(inputItem: InputItem) {
-        for (i in 0 until inputItem.tryCount) {
-            goRacing()
-        }
-    }
-
     fun goRacing() {
-        for (i in 0 until carList.size) {
-            addHyphen(i, (0..9).random())
+        repeat(carList.size) {
+            addHyphen(it, (0..9).random())
         }
-
-        ResultView.showResult(carList)
     }
 
     fun addHyphen(index: Int, randomNum: Int) {
@@ -33,5 +25,9 @@ fun main() {
     val inputItem = InputView.getInputItem()
 
     CarRacing.initListInfo(inputItem.carCount)
-    CarRacing.startGame(inputItem)
+
+    repeat(CarRacing.carList.size) {
+        CarRacing.goRacing()
+        ResultView.showResult(CarRacing.carList)
+    }
 }
