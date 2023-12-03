@@ -17,7 +17,7 @@ class RaceTest {
     }
 
     @Test
-    fun `자동차 이동 테스트 갈 수 있을 때`() {
+    fun `race를 할때 포함된 자동차가 동일하게 race하는지 확인`() {
         val carClass = mockk<Car>(relaxed = true)
 
         val race = Race(
