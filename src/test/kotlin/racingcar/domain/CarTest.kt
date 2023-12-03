@@ -1,11 +1,9 @@
-package racingcar
+package racingcar.domain
 
 import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.domain.Car
-import racingcar.domain.CarEngine
 
 class CarTest {
     @Test
