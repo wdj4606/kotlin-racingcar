@@ -11,7 +11,7 @@ fun main() {
 
     val race = Race(inputView.carNum)
 
-    for (i in 1..inputView.tryNum) {
+    repeat(inputView.tryNum) {
         race.race()
 
         resultView.print(race)

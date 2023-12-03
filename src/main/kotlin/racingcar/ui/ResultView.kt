@@ -10,7 +10,9 @@ class ResultView {
     }
 
     private fun print(car: Car) {
-        for (i in 1..car.position) kotlin.io.print("-")
+        repeat(car.position + 1) {
+            print("-")
+        }
         println()
     }
 }

@@ -1,7 +1,7 @@
 package racingcar
 
 class Car(
-    var position: Int = 1,
+    var position: Int = DEFAULT_POSITION,
     private var engine: CarEngine = CarEngine()
 ) {
 
@@ -11,5 +11,9 @@ class Car(
 
     private fun move() {
         position++
+    }
+
+    companion object {
+        val DEFAULT_POSITION = 0
     }
 }
