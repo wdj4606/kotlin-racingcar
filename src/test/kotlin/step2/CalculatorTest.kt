@@ -5,13 +5,12 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
 internal class CalculatorTest : DescribeSpec({
-    val calculator = Calculator(Utils())
 
     describe("calculator") {
         context("입력으로 null이 주어지면") {
             it("IllegalArgumentException을 던진다.") {
                 shouldThrow<IllegalArgumentException> {
-                    calculator.calculate(null)
+                    Calculator.calculate(null)
                 }
             }
         }
@@ -19,7 +18,7 @@ internal class CalculatorTest : DescribeSpec({
         context("입력으로 빈 문자열이 주어지면") {
             it("IllegalArgumentException을 던진다.") {
                 shouldThrow<IllegalArgumentException> {
-                    calculator.calculate("")
+                    Calculator.calculate("")
                 }
             }
         }
@@ -27,7 +26,7 @@ internal class CalculatorTest : DescribeSpec({
         context("입력으로 첫번째 인자로 숫자가 아닌 문자가 주어지면") {
             it("IllegalArgumentException을 던진다.") {
                 shouldThrow<IllegalArgumentException> {
-                    calculator.calculate("+ 2 + 3 + 4")
+                    Calculator.calculate("+ 2 + 3 + 4")
                 }
             }
         }
@@ -35,14 +34,14 @@ internal class CalculatorTest : DescribeSpec({
         context("입력으로 마지막 인자로 숫자가 아닌 문자가 주어지면") {
             it("IllegalArgumentException을 던진다.") {
                 shouldThrow<IllegalArgumentException> {
-                    calculator.calculate("2 + 3 + 4 +")
+                    Calculator.calculate("2 + 3 + 4 +")
                 }
             }
         }
 
         context("정상 동작 확인") {
             it("연산 결과를 반환 한다.") {
-                calculator.calculate("2 + 3 * 4 / 2") shouldBe 10.0
+                Calculator.calculate("2 + 3 * 4 / 2") shouldBe 10.0
             }
         }
     }

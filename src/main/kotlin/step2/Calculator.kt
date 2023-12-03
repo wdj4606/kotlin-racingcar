@@ -1,20 +1,19 @@
 package step2
 
-class Calculator(private val utils: Utils) {
-
+object Calculator {
     fun calculate(input: String?): Double {
-        utils.validateInput(input)
-        val inputList = utils.splitStringIntoArrayList(input!!)
-        utils.validateInputArrayList(inputList)
+        val validatedInputString = Utils.getValidateInput(input)
+        val inputList = Utils.splitStringIntoArrayList(validatedInputString)
+        val validatedInputArrayList = Utils.getValidateInputArrayList(inputList)
 
-        var result: Double = inputList.first().toDouble()
-        inputList.removeFirst()
+        var result: Double = validatedInputArrayList.first().toDouble()
+        validatedInputArrayList.removeFirst()
 
-        while (inputList.size != 0) {
-            val opt = inputList.first()
-            inputList.removeFirst()
-            val nextData = inputList.first().toDouble()
-            inputList.removeFirst()
+        while (validatedInputArrayList.size != 0) {
+            val opt = validatedInputArrayList.first()
+            validatedInputArrayList.removeFirst()
+            val nextData = validatedInputArrayList.first().toDouble()
+            validatedInputArrayList.removeFirst()
 
             result = Operators.operate(result, nextData, opt)
         }
