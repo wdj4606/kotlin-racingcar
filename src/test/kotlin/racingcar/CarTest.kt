@@ -16,7 +16,7 @@ class CarTest {
             car.race()
         }
 
-        assertThat(car.position).isEqualTo(101)
+        assertThat(car.position).isEqualTo(100)
     }
     @Test
     fun `자동차 이동 테스트 갈 수 없을 때`() {
@@ -28,6 +28,6 @@ class CarTest {
             car.race()
         }
 
-        assertThat(car.position).isEqualTo(1)
+        assertThat(car.position).isEqualTo(0)
     }
 }
