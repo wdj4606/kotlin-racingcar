@@ -1,6 +1,6 @@
 package calculator
 
-class Calculator {
+object Calculator {
 
     fun calc(format: String): Double {
         require(format.isNotBlank()) { "blank" }
