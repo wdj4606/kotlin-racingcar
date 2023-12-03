@@ -5,7 +5,7 @@ import racingcar.Race
 
 class ResultView {
     fun printCarPosition(race: Race) {
-        race.cars.forEach { printCarPosition(it) }
+        race.forEach { printCarPosition(it) }
         println()
     }
 

@@ -7,8 +7,7 @@ class InputView {
         print("names of car : ")
         carNames = readln().split(",")
         carNames.forEach {
-            if (it.length > 5)
-                throw IllegalArgumentException("name length is more than 5")
+            require(it.length <= 5) { "name length is more than 5" }
         }
         print("number of try : ")
         tryNum = readln().toInt()
