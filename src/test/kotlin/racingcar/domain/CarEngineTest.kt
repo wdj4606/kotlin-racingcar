@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 import io.mockk.every
 import io.mockk.mockkObject

@@ -1,11 +1,11 @@
-package racingcar.ui
+package racingcar.view
 
-import racingcar.Car
-import racingcar.Race
+import racingcar.domain.Car
+import racingcar.domain.Race
 
 class ResultView {
     fun printCarPosition(race: Race) {
-        race.cars.forEach { printCarPosition(it) }
+        race.forEach { printCarPosition(it) }
         println()
     }
 
