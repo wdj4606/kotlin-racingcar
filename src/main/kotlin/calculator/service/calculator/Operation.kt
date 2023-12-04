@@ -1,5 +1,8 @@
 package calculator.service.calculator
 
-interface Operation {
-    fun calculate(left: Double, right: Double): Double
+enum class Operation(val value: String, val operate: (Int, Int) -> Int) {
+    ADD("+", { x, y -> x + y }),
+    SUBTRACT("-", { x, y -> x - y }),
+    MULTIPLY("*", { x, y -> x * y }),
+    DIVIDE("/", { x, y -> x / y });
 }

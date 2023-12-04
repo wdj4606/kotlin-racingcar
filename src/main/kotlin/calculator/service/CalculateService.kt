@@ -1,33 +1,26 @@
 package calculator.service
 
-import calculator.service.calculator.Addition
-import calculator.service.calculator.Division
-import calculator.service.calculator.Multiplication
-import calculator.service.calculator.Subtraction
+import calculator.service.calculator.Operation
 
-class CalculateService {
+object CalculateService {
     private val operations = mapOf(
-        "+" to Addition(),
-        "-" to Subtraction(),
-        "*" to Multiplication(),
-        "/" to Division()
+        "+" to Operation.ADD,
+        "-" to Operation.SUBTRACT,
+        "*" to Operation.MULTIPLY,
+        "/" to Operation.DIVIDE
     )
 
-    fun calculate(input: String): String {
-        if (input.isEmpty()) {
-            throw IllegalArgumentException("input error")
-        }
+    fun calculate(input: String?): String {
+        require(!input.isNullOrBlank()) { throw IllegalArgumentException("input error") }
 
         val expressions = input.split(" ")
-        if (expressions.size % 2 == 0) {
-            throw IllegalArgumentException("input error")
-        }
+        require(expressions.size % 2 != 0) { throw IllegalArgumentException("input error") }
 
-        var result = expressions[0].toDoubleOrNull() ?: throw IllegalArgumentException("input error")
+        var result = expressions[0].toIntOrNull() ?: throw IllegalArgumentException("input error")
         for (i in 1 until expressions.size step 2) {
             val operation = operations[expressions[i]] ?: throw IllegalArgumentException("input error")
-            val right = expressions[i + 1].toDoubleOrNull() ?: throw IllegalArgumentException("input error")
-            result = operation.calculate(result, right)
+            val right = expressions[i + 1].toIntOrNull() ?: throw IllegalArgumentException("input error")
+            result = operation.operate(result, right)
         }
 
         return result.toString()

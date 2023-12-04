@@ -9,10 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class CalculateServiceTest {
 
-    private val calculateService = CalculateService()
-
     private fun assertCalculate(input: String, expected: String) {
-        val actual = calculateService.calculate(input)
+        val actual = CalculateService.calculate(input)
         assertEquals(expected, actual)
     }
 
@@ -21,7 +19,7 @@ class CalculateServiceTest {
     fun inputError(input: String) {
         // when
         val exception = assertThrows<IllegalArgumentException> {
-            calculateService.calculate(input)
+            CalculateService.calculate(input)
         }
 
         // then
@@ -29,10 +27,28 @@ class CalculateServiceTest {
     }
 
     @Test
-    fun calculate() {
+    fun calculate1() {
+        // given
+        val input = "2 + 3"
+        val expected = "5"
+
+        assertCalculate(input, expected)
+    }
+
+    @Test
+    fun calculate2() {
+        // given
+        val input = "2 + 3 * 4"
+        val expected = "20"
+
+        assertCalculate(input, expected)
+    }
+
+    @Test
+    fun calculate3() {
         // given
         val input = "2 + 3 * 4 / 2"
-        val expected = "10.0"
+        val expected = "10"
 
         assertCalculate(input, expected)
     }
