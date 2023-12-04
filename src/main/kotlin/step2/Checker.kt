@@ -32,8 +32,7 @@ object Checker {
     }
 
     fun isOperator(operatorItem: String) {
-        val operators: Array<Opt> = Opt.values()
-        val operator = operators.find { item -> item.opt == operatorItem }
+        val operator = Opt.values().find { item -> item.opt == operatorItem }
 
         require(operator != null) {
             throw IllegalArgumentException()

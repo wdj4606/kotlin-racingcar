@@ -8,25 +8,25 @@ class CalculatorTest {
 
     @Test
     fun `덧셈`() {
-        val addItem = Calculator.add(1, 2)
+        val addItem = Calculator.calcData(1, 2, "+")
         assertThat(addItem).isEqualTo(3)
     }
 
     @Test
     fun `뺄셈`() {
-        val subtractItem = Calculator.subtract(1, 2)
+        val subtractItem = Calculator.calcData(1, 2, "-")
         assertThat(subtractItem).isEqualTo(-1)
     }
 
     @Test
     fun `곱셈`() {
-        val multiplyItem = Calculator.multiply(1, 2)
+        val multiplyItem = Calculator.calcData(1, 2, "*")
         assertThat(multiplyItem).isEqualTo(2)
     }
 
     @Test
     fun `나눗셈`() {
-        val divideItem = Calculator.divide(1, 2)
+        val divideItem = Calculator.calcData(1, 2, "/")
         assertThat(divideItem).isEqualTo(0)
     }
 
