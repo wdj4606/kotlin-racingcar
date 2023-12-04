@@ -3,12 +3,7 @@ package calculator.service
 import calculator.service.calculator.Operation
 
 object CalculateService {
-    private val operations = mapOf(
-        "+" to Operation.ADD,
-        "-" to Operation.SUBTRACT,
-        "*" to Operation.MULTIPLY,
-        "/" to Operation.DIVIDE
-    )
+    private val operations = Operation.values().associateBy { it.value }
 
     fun calculate(input: String?): String {
         require(!input.isNullOrBlank()) { throw IllegalArgumentException("input error") }
