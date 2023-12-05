@@ -5,7 +5,7 @@ import step2.InputValidator.requireNotNullOrBlank
 object Calculator {
     fun calc(expression: String?): Double {
         val tokens = requireNotNullOrBlank(expression)
-            .split("\\s+".toRegex())
+            .split(" ".toRegex())
 
         val firstOperand = parseOperand(tokens.first())
 
