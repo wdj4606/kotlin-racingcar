@@ -10,7 +10,6 @@ object Calculator {
         val firstOperand = parseOperand(tokens.first())
 
         return tokens
-            .asSequence()
             .drop(1)
             .chunked(2) {
                 val operator = parseOperator(it.getOrNull(0))
