@@ -1,11 +1,9 @@
 package step2.Calculator
 
-class Calculator {
+object Calculator {
     fun calculate(input: String): Int {
 
-        if (input.isNullOrEmpty()) {
-            throw IllegalArgumentException("입력값이 Null or Empty 입니다.")
-        }
+        require(!input.isNullOrBlank()) { "입력값이 Null or Empty 입니다" }
 
         val string = input.split(" ")
 
@@ -16,19 +14,17 @@ class Calculator {
         while (index < string.size) {
             val operator = string[index - 1]
 
-            if (!isOperator(operator)) {
-                throw IllegalArgumentException("사칙 연산 기호가 아닙니다.")
-            }
+            require(isOperator(operator)) {"사칙 연산 기호가 아닙니다."}
 
             val operand = string[index].toInt()
 
             when (operator) {
-                "+" -> result += operand
-                "-" -> result -= operand
-                "*" -> result *= operand
-                "/" -> result /= operand
+                Operator.PLUS.operator -> result += operand
+                Operator.MINUS.operator -> result -= operand
+                Operator.MULTIPLY.operator -> result *= operand
+                Operator.DIVIDE.operator -> result /= operand
             }
-            
+
             index += 2
         }
 
@@ -39,7 +35,12 @@ class Calculator {
         return string.matches(Regex("[+\\-*/]"))
     }
 
-    private fun CharSequence?.isNullOrEmpty(): Boolean {
-        return this == null || this.isEmpty()
+    enum class Operator(val operator: String) {
+        PLUS("+"),
+        MINUS("-"),
+        MULTIPLY("*"),
+        DIVIDE("/")
+        ;
     }
+
 }
