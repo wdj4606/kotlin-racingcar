@@ -2,7 +2,7 @@ package step2
 
 enum class Operator(
     val symbol: String,
-    val operator: OperatorFunc
+    val operator: (Double, Double) -> Double
 ) {
     ADD("+", { a, b -> a + b }),
     SUB("-", { a, b -> a - b }),
@@ -20,5 +20,3 @@ enum class Operator(
         }
     }
 }
-
-typealias OperatorFunc = (Double, Double) -> Double
