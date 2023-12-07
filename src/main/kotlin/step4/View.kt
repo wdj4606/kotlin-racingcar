@@ -13,7 +13,7 @@ object InputView {
 }
 
 object ResultView {
-    fun showNowResult(carList: MutableList<Car>) {
+    fun showNowResult(carList: List<Car>) {
         for (car in carList) {
             println(car.name + " : " + "-".repeat(car.movingCount))
         }

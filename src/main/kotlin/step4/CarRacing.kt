@@ -1,34 +1,18 @@
 package step4
 
-object CarRacing {
-    var carList = mutableListOf<Car>()
+import java.util.Random
 
-    fun initListInfo(carName: String) {
-        val carNames = carName.split(',')
-
-        carList = MutableList(carNames.size) { i -> Car(carNames[i], 0) }
-    }
-
+class CarRacing(val carList: List<Car>) : List<Car> by carList {
     fun goRacing() {
         repeat(carList.size) {
-            plusCount(it, (0..9).random())
+            carList[it].move(Random().nextInt(9))
         }
-    }
-
-    fun plusCount(index: Int, randomNum: Int) {
-        if (randomNum < 4)
-            return
-
-        carList[index].movingCount += 1
     }
 
     fun getFinalResult(): String {
-        var maxCount = 0
-        var firstCars = mutableListOf<String>()
-        repeat(carList.size) {
-            if (maxCount < carList[it].movingCount) maxCount = carList[it].movingCount
-        }
+        val maxCount = carList.maxOf { it.movingCount }
 
+        val firstCars = mutableListOf<String>()
         repeat(carList.size) {
             if (maxCount == carList[it].movingCount) firstCars.add(carList[it].name)
         }
@@ -40,14 +24,16 @@ object CarRacing {
 fun main() {
     val inputItem = InputView.getInputItem()
 
-    CarRacing.initListInfo(inputItem.carName)
+    val carNames = inputItem.carName.split(',')
+
+    val carRacing = CarRacing(List(carNames.size) { i -> Car(carNames[i], 0) })
 
     repeat(inputItem.tryCount) {
-        CarRacing.goRacing()
-        ResultView.showNowResult(CarRacing.carList)
+        carRacing.goRacing()
+        ResultView.showNowResult(carRacing.carList)
     }
 
-    val firstCars = CarRacing.getFinalResult()
+    val firstCars = carRacing.getFinalResult()
 
     ResultView.showResult(firstCars)
 }
