@@ -7,22 +7,17 @@ object Utils {
         return input
     }
 
-    fun getValidateInputArrayList(input: List<String>): List<String> {
+    fun getValidateInputArrayList(input: MutableList<String>): MutableList<String> {
         require(isDouble(input.first())) { "Input must start with number" }
         require(isDouble(input.last())) { "Input must end with number" }
         return input
     }
 
-    fun splitStringIntoArrayList(input: String): List<String> {
-        return List(input.split(" "))
+    fun splitStringIntoArrayList(input: String): MutableList<String> {
+        return input.split(" ").toMutableList()
     }
 
     private fun isDouble(input: String): Boolean {
-        return try {
-            input.toDouble()
-            true
-        } catch (e: NumberFormatException) {
-            false
-        }
+        return input.toDoubleOrNull() != null
     }
 }
