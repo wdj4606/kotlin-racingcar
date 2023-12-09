@@ -79,4 +79,12 @@ class ExceptionTest {
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("입력 값이 올바르지 않습니다.")
     }
+
+    @Test
+    fun `사칙연산 계산 우선순위는 무시한다`() {
+        assertThat(Calculator("1 + 2 * 2").result()).isEqualTo(6)
+        assertThat(Calculator("2 * 3 + 2").result()).isEqualTo(8)
+        assertThat(Calculator("4 / 2 + 3").result()).isEqualTo(5)
+        assertThat(Calculator("1 + 3 / 2").result()).isEqualTo(2)
+    }
 }
