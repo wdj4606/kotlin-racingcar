@@ -2,11 +2,12 @@ package step1
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class CalculatorTest() {
+class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["2 + 3 * 4 / 2"])
@@ -48,9 +49,14 @@ class CalculatorTest() {
         assertThatIllegalArgumentException().isThrownBy { Calculator.calculate(input) }
     }
 
+    @Test
+    fun `예외 처리 테스트3`() {
+        assertThatIllegalArgumentException().isThrownBy { Calculator.calculate(null) }
+    }
+
     @ParameterizedTest
     @ValueSource(strings = ["1 / 0"])
-    fun `예외 처리 테스트3`(input: String) {
+    fun `예외 처리 테스트4`(input: String) {
         assertThrows<ArithmeticException> { Calculator.calculate(input) }
     }
 }

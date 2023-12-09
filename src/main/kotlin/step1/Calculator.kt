@@ -1,10 +1,10 @@
 package step1
 
 object Calculator {
-    fun calculate(input: String): Long {
+    fun calculate(input: String?): Long {
+        require(!input.isNullOrBlank()) { throw IllegalArgumentException() }
 
         val split = input.split(" ")
-
         var result: Long = split[0].toLongOrNull() ?: throw IllegalArgumentException()
 
         for (i in 1 until split.size step 2) {
