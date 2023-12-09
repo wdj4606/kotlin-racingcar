@@ -1,4 +1,4 @@
-package step1
+package step2
 
 object Calculator {
     fun calculate(input: String?): Long {

@@ -1,4 +1,4 @@
-package step1
+package step2
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
