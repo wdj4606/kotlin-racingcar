@@ -1,5 +1,5 @@
 package step3
 
-fun main(args: Array<String>) {
+fun main() {
     RacingGame.start()
 }
