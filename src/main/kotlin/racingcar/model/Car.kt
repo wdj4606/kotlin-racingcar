@@ -12,11 +12,3 @@ class Car(
         return CarDto(position)
     }
 }
-
-fun main() {
-    val car = Car().apply {
-        setMovableStrategy(RandomMovableStrategy())
-        move()
-    }
-    println(car.toDto().position)
-}
