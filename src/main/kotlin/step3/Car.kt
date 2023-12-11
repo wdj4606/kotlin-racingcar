@@ -4,6 +4,10 @@ class Car {
     var distance: Int = 0
 
     fun moveForward() {
-        distance++
+        if (isGoForward()) distance++
+    }
+
+    private fun isGoForward(): Boolean {
+        return RandomUtil.getRandomNumber() >= 4
     }
 }

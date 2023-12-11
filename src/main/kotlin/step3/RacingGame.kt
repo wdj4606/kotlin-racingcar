@@ -2,9 +2,8 @@ package step3
 
 object RacingGame {
     fun start() {
-        val racingData: RacingData = InputView.inputRacingData()
-        val cars = Cars(racingData.carCount)
-        for (i in 1..racingData.tryCount) {
+        val cars = Cars(InputView.inputCarCount())
+        for (i in 1..InputView.inputTryCount()) {
             cars.goForward()
             ResultView.printResult(cars)
         }

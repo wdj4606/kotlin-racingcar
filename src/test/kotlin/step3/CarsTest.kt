@@ -9,11 +9,12 @@ class CarsTest : DescribeSpec({
 
     describe("Cars") {
 
-        context("moveForward()를 호출하면") {
+        context("") {
 
             it("내부의 자동차가 전진한다.") {
                 mockkObject(RandomUtil)
-                every { RandomUtil.isGoForward() } returns true
+
+                every { RandomUtil.getRandomNumber() } returns 5
 
                 val cars = Cars(3)
                 cars.goForward()
