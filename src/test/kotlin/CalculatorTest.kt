@@ -1,6 +1,8 @@
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class CalculatorTest {
 
@@ -10,22 +12,45 @@ class CalculatorTest {
     }
 
     @Test
-    fun add() {
-        assertEquals(Calculator.add(1, 2), 3)
+    fun testCalculateWithEmptyInput() {
+        assertThrows<IllegalArgumentException> {
+            Calculator.calculate("")
+        }
     }
 
     @Test
-    fun subtract() {
-        assertEquals(Calculator.subtract(1, 2), -1)
+    fun testCalculateWithInvalidInput() {
+        assertThrows<NumberFormatException> {
+            Calculator.calculate("abc")
+        }
     }
 
     @Test
-    fun multiply() {
-        assertEquals(Calculator.multiply(1, 2), 2)
+    fun testCalculateWithSingleNumber() {
+        assertEquals(Calculator.calculate("5"), 5)
     }
 
     @Test
-    fun divide() {
-        assertEquals(Calculator.divide(4, 2), 2)
+    fun testCalculateWithMultipleOperations() {
+        assertEquals(Calculator.calculate("2 + 3 * 4 - 6 / 2"), 7)
+    }
+
+    @Test
+    fun testCalculateWithNegativeNumbers() {
+        assertEquals(Calculator.calculate("-2 + 3"), 1)
+    }
+
+    @Test
+    fun testCalculateWithDivisionByZero() {
+        assertThrows<ArithmeticException> {
+            Calculator.calculate("2 / 0")
+        }
+    }
+
+    @Test
+    fun testCalculateWithInvalidOperation() {
+        assertThrows(IllegalArgumentException::class.java) {
+            Calculator.calculate("2 ? 3")
+        }
     }
 }
