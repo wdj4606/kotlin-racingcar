@@ -1,37 +1,23 @@
 package step2
 
 object Calculator {
+    fun calculate(inputList: Array<String>): Long {
+        require(inputList.isNotEmpty()) { "입력값은 필수입니다." }
+        var splitList = inputList[0].split(" ")
+        var total = splitList[0].toLongOrNull() ?: throw IllegalArgumentException("첫 입력값은 숫자여야 합니다.")
 
-    private fun Double.plus(operand: Double) = this + operand
-    private fun Double.minus(operand: Double) = this - operand
-    private fun Double.multiply(operand: Double) = this * operand
-    private fun Double.divide(operand: Double) = this / operand
-    fun calculate(operand: Double, total: Double, operator: String): Double {
-        return when (operator) {
-            "+" -> total.plus(operand)
-            "-" -> total.minus(operand)
-            "*" -> total.multiply(operand)
-            "/" -> total.divide(operand)
-            else -> throw IllegalArgumentException("연산자가 올바른 형식이 아닙니다.(+,-,*,/ 만 가능)")
+        val numberElements = splitList.filterIndexed { index, _ -> index % 2 == 0 && index != 0 }
+        val operatorElements = splitList.filterIndexed { index, _ -> index % 2 != 0 }
+        if (operatorElements.size != numberElements.size) throw IllegalArgumentException("올바른 식이 아닙니다.")
+
+        numberElements.indices.forEach { i ->
+            val operator = operatorElements[i]
+            val operand = numberElements[i].toLongOrNull() ?: throw IllegalArgumentException("피연산자가 올바른 형식이 아닙니다.")
+            total = this.operate(total, operand, operator)
         }
+        return total
     }
-}
-
-fun main(args: Array<String>) {
-    if (args.isEmpty()) {
-        throw IllegalArgumentException("입력값은 필수입니다.")
+    private fun operate(operand: Long, total: Long, operator: String): Long {
+        return Operator.of(operator).calculate(operand, total)
     }
-    val inputList: List<String> = args[0].split(" ")
-
-    var total = inputList[0].toDouble()
-    val numberElements = inputList.filterIndexed { index, _ -> index % 2 == 0 && index != 0 }
-    val operatorElements = inputList.filterIndexed { index, _ -> index % 2 != 0 }
-    if (operatorElements.size != numberElements.size) throw IllegalArgumentException("올바른 식이 아닙니다.")
-
-    for (i in numberElements.indices) {
-        val operator = operatorElements[i]
-        val operand = numberElements[i].toDoubleOrNull() ?: throw IllegalArgumentException("피연산자가 올바른 형식이 아닙니다.")
-        total = Calculator.calculate(operand, total, operator)
-    }
-    println(total)
 }
