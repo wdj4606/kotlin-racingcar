@@ -1,7 +1,9 @@
 package racingcar.service
 
+import kotlin.random.Random
+
 class Car() {
-    var position: Int = 0
+    var position: Int = RacingRule.START_POSITION
 
     fun move() {
         if (isMovable()) {
@@ -10,6 +12,6 @@ class Car() {
     }
 
     private fun isMovable(): Boolean {
-        return (Math.random() * 10).toInt() >= 4
+        return Random.nextInt(RacingRule.MAX_RANDOM_NUMBER) >= RacingRule.ENABLE_TO_MOVE
     }
 }

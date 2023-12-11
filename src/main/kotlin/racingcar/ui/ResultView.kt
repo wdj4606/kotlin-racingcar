@@ -10,8 +10,8 @@ class ResultView {
 
     fun getString(carList: List<Car>): String {
         val stringBuilder = StringBuilder()
-        for (car in carList) {
-            stringBuilder.append("-".repeat(car.position))
+        repeat(carList.size) {
+            stringBuilder.append("-".repeat(carList[it].position))
             stringBuilder.append("\n")
         }
         return stringBuilder.toString()
