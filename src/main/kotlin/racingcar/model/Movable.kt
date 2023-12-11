@@ -2,14 +2,12 @@ package racingcar.model
 
 open class Movable() {
     private lateinit var movableStrategy: MovableStrategy
-    private var _position: Int = 0
-
-    val position: Int
-        get() = _position
+    var position: Int = 0
+        private set
 
     fun move() {
         if (movableStrategy.isMovable()) {
-            _position++
+            position++
         }
     }
 
