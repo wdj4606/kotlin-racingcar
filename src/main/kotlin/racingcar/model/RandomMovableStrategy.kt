@@ -8,7 +8,7 @@ class RandomMovableStrategy : MovableStrategy {
         const val RANDOM_THRESHOLD = 4
     }
 
-    fun generateRandomNumber(): Int {
+    private fun generateRandomNumber(): Int {
         return Random.nextInt(RANDOM_BOUND)
     }
 

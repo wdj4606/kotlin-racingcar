@@ -5,7 +5,6 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.spyk
 
-
 class RandomMovableStrategyTest : FunSpec({
 
     test("isMovable should return true when random value is greater than RANDOM_THRESHOLD") {
@@ -29,5 +28,4 @@ class RandomMovableStrategyTest : FunSpec({
             result
         } shouldBe true
     }
-
 })

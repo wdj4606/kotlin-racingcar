@@ -2,7 +2,6 @@ package racingcar.model
 
 import racingcar.dto.CarDto
 
-
 class Race(
     private val cars: LinkedHashSet<Car>
 ) {

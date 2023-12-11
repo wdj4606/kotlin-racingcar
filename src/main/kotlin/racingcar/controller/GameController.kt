@@ -4,7 +4,6 @@ import racingcar.model.Race
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
-
 class GameController(
     private val inputView: InputView,
     private val resultView: ResultView,
@@ -16,7 +15,6 @@ class GameController(
         initializeGame()
         run()
     }
-
 
     private fun initializeGame() {
         race = Race.from(inputView.getCarCount())
