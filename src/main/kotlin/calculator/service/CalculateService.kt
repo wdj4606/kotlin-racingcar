@@ -6,10 +6,10 @@ object CalculateService {
     private val operations = Operation.values().associateBy { it.value }
 
     fun calculate(input: String?): String {
-        require(!input.isNullOrBlank()) { throw IllegalArgumentException("input error") }
+        require(!input.isNullOrBlank()) { "input error" }
 
         val expressions = input.split(" ")
-        require(expressions.size % 2 != 0) { throw IllegalArgumentException("input error") }
+        require(expressions.size % 2 != 0) { "input error" }
 
         var result = expressions[0].toIntOrNull() ?: throw IllegalArgumentException("input error")
         for (i in 1 until expressions.size step 2) {
