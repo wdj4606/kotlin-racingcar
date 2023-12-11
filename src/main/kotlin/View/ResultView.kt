@@ -1,12 +1,14 @@
 package View
 
-class ResultView(val raceLog: MutableList<MutableList<Int>>) {
+import Model.Race
+
+class ResultView(val race: Race) {
     fun printResult() {
-        for (i in 1 until raceLog.size) {
+        for (i in 1..race.attempt) {
             println("${i}번째 시도")
-            for (j in 0 until raceLog[i].size) {
+            for (j in 0 until race.participant.size) {
                 print("${j + 1}번째 자동차 : ")
-                printRacingSkidMark(raceLog[i][j])
+                printRacingSkidMark(race.participant[j].position[i])
                 println()
             }
             println()
@@ -14,7 +16,7 @@ class ResultView(val raceLog: MutableList<MutableList<Int>>) {
     }
 
     private fun printRacingSkidMark(number: Int) {
-        for (i in 1..number) {
+        repeat(number) {
             print("-")
         }
     }
