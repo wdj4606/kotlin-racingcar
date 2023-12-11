@@ -1,11 +1,13 @@
-package step4
+package step5.domain
 
+import step5.view.InputView
+import step5.view.ResultView
 import java.util.Random
 
 class CarRacing(val carList: List<Car>) : List<Car> by carList {
     fun goRacing() {
         repeat(carList.size) {
-            carList[it].move(Random().nextInt(10))
+            carList[it].move(Random().nextInt(9))
         }
     }
 
