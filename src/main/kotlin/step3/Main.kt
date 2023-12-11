@@ -9,7 +9,8 @@ fun main() {
     InputView.inputCarNumbers()
     InputView.inputTryNumbers()
     OutputView.cars = MutableList(InputView.carNumbers) { Car() }
-    for (i in 0..InputView.tryNumbers) {
+
+    repeat(InputView.tryNumbers) {
         OutputView.printResult()
     }
 }
