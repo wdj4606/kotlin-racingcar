@@ -1,4 +1,4 @@
-package step4.Model
+package step4
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

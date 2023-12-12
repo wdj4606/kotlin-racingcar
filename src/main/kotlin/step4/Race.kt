@@ -1,4 +1,4 @@
-package step4.Model
+package step4
 
 data class Race(val participant: List<Car>, val attempt: Int) {
     fun run() {

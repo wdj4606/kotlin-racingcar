@@ -1,6 +1,6 @@
 package step4.View
 
-import step4.Model.Car
+import step4.Car
 
 class InputView() {
     fun inputInfoOfCars(): List<Car> {

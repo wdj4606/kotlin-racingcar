@@ -1,4 +1,4 @@
-package step4.Model
+package step4
 
 import kotlin.random.Random
 
