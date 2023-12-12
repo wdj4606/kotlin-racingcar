@@ -3,7 +3,7 @@ package racingcar.model
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
-class CarBehaviorTest : BehaviorSpec({
+class CarTest : BehaviorSpec({
 
     given("a car with alwaysMoveStrategy") {
         val alwaysMoveStrategy = MovableStrategy { true }
