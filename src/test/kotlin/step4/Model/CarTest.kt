@@ -1,4 +1,4 @@
-package Model
+package step4.Model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test
 class CarTest {
     @Test
     fun `자동차 정보 입력`() {
-        val car = Car("1")
-        assertThat(car.id == "1").isTrue()
+        val car = Car("pdg")
+        assertThat(car.name == "pdg").isTrue()
     }
 
     @Test
