@@ -1,31 +1,35 @@
 package racingcar.model
 
-import io.kotest.core.spec.style.FunSpec
+import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
-class CarTest : FunSpec({
+class CarBehaviorTest : BehaviorSpec({
 
-    test("toDto should return CarDto with correct position") {
-        // given
+    given("a car with alwaysMoveStrategy") {
         val alwaysMoveStrategy = MovableStrategy { true }
         val car = Car(alwaysMoveStrategy)
-        car.move()
-        // when
-        val dto = car.toDto()
 
-        // then
-        dto.position shouldBe 1
+        `when`("the car is moved") {
+            car.move()
+
+            then("toDto should return CarDto with correct position") {
+                val dto = car.toDto()
+                dto.position shouldBe 1
+            }
+        }
     }
 
-    test("toDto should return CarDto with correct position when position is not incremented") {
-        // given
+    given("a car with neverMoveStrategy") {
         val neverMoveStrategy = MovableStrategy { false }
         val car = Car(neverMoveStrategy)
-        car.move()
-        // when
-        val dto = car.toDto()
 
-        // then
-        dto.position shouldBe 0
+        `when`("the car is moved") {
+            car.move()
+
+            then("toDto should return CarDto with correct position when position is not incremented") {
+                val dto = car.toDto()
+                dto.position shouldBe 0
+            }
+        }
     }
 })
