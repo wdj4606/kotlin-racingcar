@@ -3,11 +3,8 @@ package racingcar.model
 import racingcar.dto.CarDto
 
 class Car(
-    movableStrategy: RandomMovableStrategy = RandomMovableStrategy(),
-) : Movable() {
-    init {
-        setMovableStrategy(movableStrategy)
-    }
+    movableStrategy: MovableStrategy = MovableStrategy { true },
+) : Movable(movableStrategy) {
     fun toDto(): CarDto {
         return CarDto(position)
     }

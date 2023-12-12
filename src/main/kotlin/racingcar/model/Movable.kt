@@ -1,7 +1,8 @@
 package racingcar.model
 
-open class Movable() {
-    private lateinit var movableStrategy: MovableStrategy
+abstract class Movable(
+   private val movableStrategy: MovableStrategy
+) {
     var position: Int = 0
         private set
 
@@ -9,9 +10,5 @@ open class Movable() {
         if (movableStrategy.isMovable()) {
             position++
         }
-    }
-
-    fun setMovableStrategy(movableStrategy: MovableStrategy) {
-        this.movableStrategy = movableStrategy
     }
 }
