@@ -1,5 +1,6 @@
 package step4
 
+import step4.Model.Race
 import step4.View.InputView
 import step4.View.ResultView
 

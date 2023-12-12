@@ -1,6 +1,6 @@
 package step4.View
 
-import step4.Race
+import step4.Model.Race
 
 class ResultView(val race: Race) {
     fun printResult() {
