@@ -28,8 +28,6 @@ class ResultView(val race: Race) {
         }
     }
     private fun printWinner() {
-        val orderedList = race.participant.sortedByDescending { it.position.last() }
-        val winners = orderedList.filter { it.position.last() == orderedList.first().position.last() }
-        println("${winners.joinToString { it.name }}가 최종 우승했습니다.")
+        println("${race.getWinner().joinToString { it.name }}가 최종 우승했습니다.")
     }
 }

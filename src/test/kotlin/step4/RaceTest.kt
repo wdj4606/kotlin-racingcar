@@ -16,6 +16,16 @@ class RaceTest {
     }
 
     @Test
+    fun `우승자 확인`() {
+        val cars = listOf(Car("1"))
+        val attempt = 5
+        val race = Race(cars, attempt)
+        race.participant.forEach { assertThat(it.name).isIn("1") }
+        assertThat(race.attempt).isEqualTo(5)
+        assertThat(race.getWinner().size == 1 && race.getWinner()[0].name == "1").isTrue()
+    }
+
+    @Test
     fun `레이스 진행 확인1`() {
         val cars = listOf(Car("1"), Car("2"), Car("3"), Car("4"), Car("5"))
         val attempt = 5
