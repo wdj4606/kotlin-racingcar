@@ -1,24 +1,11 @@
 package step2
 
-import java.util.function.BinaryOperator
-import java.util.function.IntBinaryOperator
+enum class Operator(val symbol: String, val op: (Int, Int) -> Int) {
 
-enum class Operator(val symbol: String) : BinaryOperator<Int>, IntBinaryOperator {
-
-    PLUS("+") {
-        override fun apply(x: Int, y: Int): Int = x.plus(y)
-    },
-    MINUS("-") {
-        override fun apply(x: Int, y: Int): Int = x.minus(y)
-    },
-    MULTIPLY("*") {
-        override fun apply(x: Int, y: Int): Int = x.times(y)
-    },
-    DIVIDE("/") {
-        override fun apply(x: Int, y: Int): Int = x.div(y)
-    };
-
-    override fun applyAsInt(left: Int, right: Int): Int = apply(left, right)
+    PLUS("+", { x, y -> x + y }),
+    MINUS("-", { x, y -> x - y }),
+    MULTIPLY("*", { x, y -> x * y }),
+    DIVIDE("/", { x, y -> x / y });
 
     companion object {
         fun from(symbol: String): Operator {
