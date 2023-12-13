@@ -1,7 +1,9 @@
-package Model
+package step4
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import step4.Model.Car
+import step4.Model.Race
 
 class RaceTest {
     @Test
@@ -9,8 +11,18 @@ class RaceTest {
         val cars = listOf(Car("1"), Car("2"), Car("3"), Car("4"), Car("5"))
         val attempt = 5
         val race = Race(cars, attempt)
-        race.participant.forEach { assertThat(it.id).isIn("1", "2", "3", "4", "5") }
+        race.participant.forEach { assertThat(it.name).isIn("1", "2", "3", "4", "5") }
         assertThat(race.attempt).isEqualTo(5)
+    }
+
+    @Test
+    fun `우승자 확인`() {
+        val cars = listOf(Car("1"))
+        val attempt = 5
+        val race = Race(cars, attempt)
+        race.participant.forEach { assertThat(it.name).isIn("1") }
+        assertThat(race.attempt).isEqualTo(5)
+        assertThat(race.getWinner().size == 1 && race.getWinner()[0].name == "1").isTrue()
     }
 
     @Test
