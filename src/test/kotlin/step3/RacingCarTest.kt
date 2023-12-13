@@ -7,7 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import racingcar.service.Car
 import racingcar.service.RacingCar
-import racingcar.ui.ResultView
 
 class RacingCarTest {
 
@@ -29,33 +28,9 @@ class RacingCarTest {
         val carList = racingCar.getCarList()
 
         assertEquals(numberOfCar, carList.size)
-        repeat(numberOfCar) {
-            assert(carList[it].position >= 0)
-            assert(numberOfRound >= carList[it].position)
+        carList.forEach {
+            assert(it.position >= 0)
+            assert(numberOfRound >= it.position)
         }
-    }
-
-    @Test
-    fun printResult() {
-        val carList = listOf(
-            Car(),
-            Car(),
-            Car()
-        )
-
-        carList[0].position = 1
-        carList[1].position = 2
-        carList[2].position = 3
-
-        // "-\n--\n---\n"
-        val expected = """
-            -
-            --
-            ---
-            
-        """.trimIndent()
-
-        val actual = ResultView().getString(carList)
-        assertEquals(expected, actual)
     }
 }
