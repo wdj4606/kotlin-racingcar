@@ -1,24 +1,22 @@
 package step3.domain
 
-class Car {
-    var progress: Int = 0
-
-    fun move() {
-        progress += onGoingCheck()
+const val DEFAULT_PROGRESS = 0
+const val ON_GOING_CHECK_VALUE = 4
+class Car(
+    private var progress: Int = DEFAULT_PROGRESS
+) {
+    fun move(value: Int) {
+        progress += onGoingCheck(value)
     }
 
-    private fun onGoingCheck(): Int {
-        val random = (Math.random() * 10).toInt()
-        if (random >= 4) {
+    private fun onGoingCheck(value: Int): Int {
+        if (value >= ON_GOING_CHECK_VALUE) {
             return 1
         }
         return 0
     }
 
-    fun printProgress() {
-        for (i in 0 until progress) {
-            print("-")
-        }
-        println()
+    fun getProgress(): Int {
+        return progress
     }
 }

@@ -4,9 +4,9 @@ import step3.domain.Car
 
 class ResultView {
     companion object {
-        fun printProgress(carProgress: Array<Car>) {
-            for (car in carProgress) {
-                car.printProgress()
+        fun printCarProgress(car: Car) {
+            for (i in 0 until car.getProgress()) {
+                print("-")
             }
             println()
         }
