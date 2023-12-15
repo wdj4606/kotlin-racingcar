@@ -8,12 +8,13 @@ fun main() {
 
     val inputView = InputView()
 
-    val numberOfCar = inputView.inputNumberOfCar()
-    val racingCar = RacingCar(numberOfCar)
+    val carNames = inputView.inputNameOfCars()
+    val racingCar = RacingCar(carNames)
 
     val numberOfRound = inputView.inputNumberOfRound()
     racingCar.run(numberOfRound)
 
     val resultView = ResultView()
-    resultView.print(racingCar.getCarList())
+    resultView.printResult(racingCar.getCarList())
+    resultView.printWinners(racingCar.getWinners())
 }

@@ -1,11 +1,11 @@
 package racingcar.service
 
-class RacingCar(numberOfCar: Int) {
+class RacingCar(carNames: List<String>) {
     private val carList: MutableList<Car> = mutableListOf()
 
     init {
-        repeat(numberOfCar) {
-            carList.add(Car())
+        for (carName in carNames) {
+            carList.add(Car(carName))
         }
     }
 
@@ -17,5 +17,10 @@ class RacingCar(numberOfCar: Int) {
 
     fun getCarList(): List<Car> {
         return carList
+    }
+
+    fun getWinners(): List<Car> {
+        val maxPosition = carList.maxOf { it.position }
+        return carList.filter { it.position == maxPosition }
     }
 }

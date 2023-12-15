@@ -2,7 +2,7 @@ package racingcar.service
 
 import kotlin.random.Random
 
-class Car() {
+class Car(val name: String) {
     companion object {
         const val START_POSITION = 0
         const val MAX_RANDOM_NUMBER = 10
