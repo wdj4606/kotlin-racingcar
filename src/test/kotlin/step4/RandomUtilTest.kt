@@ -7,9 +7,8 @@ import step4.util.RandomUtil
 class RandomUtilTest {
     @Test
     fun `Random 값 출력 정상 동작 확인`() {
-        val randomUtil = RandomUtil()
         repeat(100) {
-            val randomNumber = randomUtil.getRandomNumber()
+            val randomNumber = RandomUtil.getRandomNumber()
             Assertions.assertThat(randomNumber in 0..9).isTrue()
         }
     }

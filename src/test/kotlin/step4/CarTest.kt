@@ -21,10 +21,10 @@ class CarTest {
     fun `자동차 전진 시도 확인`() {
         val car = Car("1")
         assertThat(car.position.size == 1).isTrue()
-        car.moveForward(5)
+        car.moveForward(4)
         assertThat(car.position.size == 2).isTrue()
         assertThat(car.position[1] === 1).isTrue()
-        car.moveForward(1)
+        car.moveForward(3)
         assertThat(car.position.size == 3).isTrue()
         assertThat(car.position[2] === 1).isTrue()
     }

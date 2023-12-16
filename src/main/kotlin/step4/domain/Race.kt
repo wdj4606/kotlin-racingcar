@@ -4,9 +4,8 @@ import step4.util.RandomUtil
 
 data class Race(val participant: List<Car>, val attempt: Int) {
     fun run() {
-        val randomUtil = RandomUtil()
         repeat(attempt) {
-            participant.forEach { car -> car.moveForward(randomUtil.getRandomNumber()) }
+            participant.forEach { car -> car.moveForward(RandomUtil.getRandomNumber()) }
         }
     }
     fun getWinner(): List<Car> {
