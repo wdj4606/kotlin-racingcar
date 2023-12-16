@@ -1,8 +1,8 @@
 package step4
 
-import step4.Model.Race
-import step4.View.InputView
-import step4.View.ResultView
+import step4.domain.Race
+import step4.view.InputView
+import step4.view.ResultView
 
 fun main() {
     val inputView = InputView()

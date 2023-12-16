@@ -2,7 +2,7 @@ package step4
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import step4.Model.Car
+import step4.domain.Car
 
 class CarTest {
     @Test
@@ -21,9 +21,11 @@ class CarTest {
     fun `자동차 전진 시도 확인`() {
         val car = Car("1")
         assertThat(car.position.size == 1).isTrue()
-        car.moveForward()
+        car.moveForward(4)
         assertThat(car.position.size == 2).isTrue()
-        car.moveForward()
+        assertThat(car.position[1] === 1).isTrue()
+        car.moveForward(3)
         assertThat(car.position.size == 3).isTrue()
+        assertThat(car.position[2] === 1).isTrue()
     }
 }
