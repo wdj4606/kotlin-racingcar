@@ -5,7 +5,7 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.spyk
 
-class RandomMovableStrategyBehaviorTest : BehaviorSpec({
+class RandomMovableStrategyTest : BehaviorSpec({
     given("a RandomMovableStrategy with random value less than RANDOM_THRESHOLD") {
         (0..4).forEach { randomValue ->
             val mock = spyk<RandomMovableStrategy>()
