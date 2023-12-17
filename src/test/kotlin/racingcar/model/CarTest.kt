@@ -7,7 +7,7 @@ class CarTest : BehaviorSpec({
 
     given("a car with alwaysMoveStrategy") {
         val alwaysMoveStrategy = MovableStrategy { true }
-        val car = Car(alwaysMoveStrategy)
+        val car = Car("test-car", alwaysMoveStrategy)
 
         `when`("the car is moved") {
             car.move()
@@ -21,7 +21,7 @@ class CarTest : BehaviorSpec({
 
     given("a car with neverMoveStrategy") {
         val neverMoveStrategy = MovableStrategy { false }
-        val car = Car(neverMoveStrategy)
+        val car = Car("test-car", neverMoveStrategy)
 
         `when`("the car is moved") {
             car.move()
