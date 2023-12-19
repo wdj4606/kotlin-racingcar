@@ -1,22 +1,10 @@
 package racingcar.service
 
-class RacingCar(carNames: List<String>) {
-    private val carList: MutableList<Car> = mutableListOf()
-
-    init {
-        for (carName in carNames) {
-            carList.add(Car(carName))
-        }
-    }
-
+class RacingCar(val carList: List<Car>) {
     fun run(numberOfRound: Int) {
         repeat(numberOfRound) {
             carList.map { it.move() }
         }
-    }
-
-    fun getCarList(): List<Car> {
-        return carList
     }
 
     fun getWinners(): List<Car> {
