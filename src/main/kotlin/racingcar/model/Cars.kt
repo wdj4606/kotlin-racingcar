@@ -27,9 +27,9 @@ class Cars(
 
     companion object {
         fun from(cars: List<Car>): Cars {
-            return Cars().apply {
-                cars.forEach { add(it) }
-            }
+            return Cars(
+                linkedSetOf(*cars.toTypedArray())
+            )
         }
     }
 }
