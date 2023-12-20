@@ -18,6 +18,13 @@ class CarsTest : BehaviorSpec({
                 positions shouldBe listOf(1, 1) // Assuming all cars move by one position
             }
         }
+    }
+
+    given("a list of cars with a filter condition") {
+        val alwaysMoveStrategy = MovableStrategy { true }
+        val car1 = Car("car1", alwaysMoveStrategy)
+        val car2 = Car("car2", alwaysMoveStrategy)
+        val cars = Cars.from(listOf(car1, car2))
 
         `when`("filtering cars based on a predicate") {
             val filteredCars = cars.filter { it.name == "car1" }
@@ -27,6 +34,13 @@ class CarsTest : BehaviorSpec({
                 filteredCars.getCars().first().name shouldBe "car1"
             }
         }
+    }
+
+    given("a list of cars with varying positions") {
+        val alwaysMoveStrategy = MovableStrategy { true }
+        val car1 = Car("car1", alwaysMoveStrategy)
+        val car2 = Car("car2", alwaysMoveStrategy)
+        val cars = Cars.from(listOf(car1, car2))
 
         `when`("getting the maximum position") {
             val maxPosition = cars.getMaxPosition()
