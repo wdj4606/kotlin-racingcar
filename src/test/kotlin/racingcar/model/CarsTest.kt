@@ -38,15 +38,18 @@ class CarsTest : BehaviorSpec({
 
     given("a list of cars with varying positions") {
         val alwaysMoveStrategy = MovableStrategy { true }
+        val neverMoveStrategy = MovableStrategy { false }
         val car1 = Car("car1", alwaysMoveStrategy)
         val car2 = Car("car2", alwaysMoveStrategy)
         val cars = Cars.from(listOf(car1, car2))
+        cars.move()
+        cars.move()
 
         `when`("getting the maximum position") {
             val maxPosition = cars.getMaxPosition()
 
             then("it should be the maximum position of all cars") {
-                maxPosition shouldBe 1 // Assuming the positions of car1 and car2 are 1 after moving
+                maxPosition shouldBe 2
             }
         }
     }
