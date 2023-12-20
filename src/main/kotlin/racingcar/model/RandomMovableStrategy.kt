@@ -15,6 +15,6 @@ class RandomMovableStrategy : MovableStrategy {
     private val randomIterator: Iterator<Int> = generateSequence(::generateRandomNumber).iterator()
 
     override fun isMovable(): Boolean {
-        return randomIterator.next() > RANDOM_THRESHOLD
+        return randomIterator.next() >= RANDOM_THRESHOLD
     }
 }

@@ -7,7 +7,7 @@ import io.mockk.spyk
 
 class RandomMovableStrategyTest : BehaviorSpec({
     given("a RandomMovableStrategy with random value less than RANDOM_THRESHOLD") {
-        (0..4).forEach { randomValue ->
+        (0..3).forEach { randomValue ->
             val mock = spyk<RandomMovableStrategy>()
             every { mock["generateRandomNumber"]() } returns randomValue
 
@@ -22,7 +22,7 @@ class RandomMovableStrategyTest : BehaviorSpec({
     }
 
     given("a RandomMovableStrategy with random value greater than or equal to RANDOM_THRESHOLD") {
-        (5..9).forEach { randomValue ->
+        (4..9).forEach { randomValue ->
             val mock = spyk<RandomMovableStrategy>()
             every { mock["generateRandomNumber"]() } returns randomValue
 
