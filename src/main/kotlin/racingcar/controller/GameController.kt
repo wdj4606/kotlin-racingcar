@@ -17,16 +17,19 @@ class GameController(
     }
 
     private fun initializeGame() {
-        race = Race.from(inputView.getCarCount())
-        tryCount = inputView.getTryCount()
+        with(inputView) {
+            race = Race.from(getCarNames())
+            tryCount = getTryCount()
+        }
     }
 
     private fun run() {
-        resultView.printCarStateHeader()
-
-        repeat(tryCount) {
-            race.moveOneTick()
-            resultView.printCarState(race.getCarInfo())
+        with(resultView) {
+            printCarStateHeader()
+            repeat(tryCount) {
+                printCarState(race.race())
+            }
+            printWinner(race.getWinners())
         }
     }
 }

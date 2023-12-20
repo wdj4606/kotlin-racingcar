@@ -1,42 +1,35 @@
 package racingcar.model
 
-import io.kotest.core.spec.style.FunSpec
+import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import io.mockk.every
-import io.mockk.spyk
 
-class CarTest : FunSpec({
+class CarTest : BehaviorSpec({
 
-    test("toDto should return CarDto with correct position") {
-        // given
-        val car = spyk<Car>()
-        val movableStrategy = spyk<RandomMovableStrategy>()
-        car.setMovableStrategy(movableStrategy)
+    given("a car with alwaysMoveStrategy") {
+        val alwaysMoveStrategy = MovableStrategy { true }
+        val car = Car("test-car", alwaysMoveStrategy)
 
-        // Stubbing isMovable to return true (to increment position)
-        every { movableStrategy.isMovable() } returns true
-        car.move()
+        `when`("the car is moved") {
+            car.move()
 
-        // when
-        val dto = car.toDto()
-
-        // then
-        dto.position shouldBe 1
+            then("toDto should return CarDto with correct position") {
+                val dto = car.toDto()
+                dto.position shouldBe 1
+            }
+        }
     }
 
-    test("toDto should return CarDto with correct position when position is not incremented") {
-        // given
-        val car = spyk<Car>()
-        val movableStrategy = spyk<RandomMovableStrategy>()
-        car.setMovableStrategy(movableStrategy)
+    given("a car with neverMoveStrategy") {
+        val neverMoveStrategy = MovableStrategy { false }
+        val car = Car("test-car", neverMoveStrategy)
 
-        // Stubbing isMovable to return false (to not increment position)
-        every { movableStrategy.isMovable() } returns false
+        `when`("the car is moved") {
+            car.move()
 
-        // when
-        val dto = car.toDto()
-
-        // then
-        dto.position shouldBe 0
+            then("toDto should return CarDto with correct position when position is not incremented") {
+                val dto = car.toDto()
+                dto.position shouldBe 0
+            }
+        }
     }
 })
