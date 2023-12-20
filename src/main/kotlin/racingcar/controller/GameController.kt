@@ -17,14 +17,14 @@ class GameController(
     }
 
     private fun initializeGame() {
-        inputView.run {
+        with(inputView) {
             race = Race.from(getCarNames())
             tryCount = getTryCount()
         }
     }
 
     private fun run() {
-        resultView.run {
+        with(resultView) {
             printCarStateHeader()
             repeat(tryCount) {
                 printCarState(race.race())
