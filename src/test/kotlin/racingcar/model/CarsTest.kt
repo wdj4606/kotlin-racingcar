@@ -4,10 +4,10 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
 class CarsTest : BehaviorSpec({
-
     given("a list of cars") {
-        val car1 = Car("car1")
-        val car2 = Car("car2")
+        val alwaysMoveStrategy = MovableStrategy { true }
+        val car1 = Car("car1", alwaysMoveStrategy)
+        val car2 = Car("car2", alwaysMoveStrategy)
         val cars = Cars.from(listOf(car1, car2))
 
         `when`("the cars are moved") {
