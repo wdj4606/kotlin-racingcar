@@ -8,29 +8,50 @@ class CalculatorTest {
     private val epsilon = 1e-10
     @Test
     fun add() {
-        val calculator = Calculator()
         val argument = "1+2+3";
-        assert(kotlin.math.abs(6 - calculator.drive(argument)) < epsilon)
+        assert(kotlin.math.abs(6 - Calculator.drive(argument)) < epsilon)
+    }
+
+    @Test
+    fun complexPlusMinus() {
+        val argument = "1+2-3"
+        assert(kotlin.math.abs(0 - Calculator.drive(argument)) < epsilon)
+    }
+
+    @Test
+    fun complexPlusMultiply() {
+        val argument = "1+2*3"
+        assert(kotlin.math.abs(7 - Calculator.drive(argument)) < epsilon)
+    }
+
+    @Test
+    fun complexPlusDivide() {
+        val argument = "1+6/3"
+        assert(kotlin.math.abs(3 - Calculator.drive(argument)) < epsilon)
+    }
+    @Test
+    fun complexMinusMultiply() {
+        val argument = "1-2*3"
+        assert(kotlin.math.abs(-5 - Calculator.drive(argument)) < epsilon)
     }
 
     @Test
     fun multiply() {
-        val calculator = Calculator()
         val argument = "2*3"
-        assert(kotlin.math.abs(6 - calculator.drive(argument)) < epsilon)
+        assert(kotlin.math.abs(6 - Calculator.drive(argument)) < epsilon)
     }
+
+
 
     @Test
     fun minus() {
-        val calculator = Calculator()
         val argument = "3-2"
-        assert(kotlin.math.abs(1 - calculator.drive(argument)) < epsilon)
+        assert(kotlin.math.abs(1 - Calculator.drive(argument)) < epsilon)
     }
     @Test
     fun divide() {
-        val calculator = Calculator()
         val argument = "6/2"
-        assert(kotlin.math.abs(3 - calculator.drive(argument)) < epsilon)
+        assert(kotlin.math.abs(3 - Calculator.drive(argument)) < epsilon)
     }
 //    @Test
 //    fun preProcess() {

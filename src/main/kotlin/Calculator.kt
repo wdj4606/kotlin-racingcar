@@ -2,7 +2,7 @@
 //사칙연산 순서 X
 
 
-public class Calculator {
+object Calculator {
 
     //더하기
     //뺄셈
@@ -14,19 +14,20 @@ public class Calculator {
         return operate(numberList, operatorList)
     }
 
-    private fun preProcess(argument: String): Pair<MutableList<Int>, MutableList<Char>> {
+    fun preProcess(argument: String?): Pair<MutableList<Int>, MutableList<Char>> {
+        require(!argument.isNullOrBlank()) { "there is no input" }
         val argument : String = argument.replace(" ","");
-        if (argument.isEmpty()) {
-            throw IllegalArgumentException("there is no input")
-        }
 
         val numberList = mutableListOf<Int>()
         val operatorList = mutableListOf<Char>()
         var number = 0
+
+        val regexNumber = Regex("[0-9]");
+        val regexOperator = Regex("[+\\-*/]");
         for (token in argument) {
             when {
-                Regex("[0-9]").matches(token.toString()) -> number = number * 10 + (token - '0')
-                Regex("[+\\-*/]").matches(token.toString()) -> {
+                regexNumber.matches(token.toString()) -> number = number * 10 + (token - '0')
+                regexOperator.matches(token.toString()) -> {
                     numberList.add(number)
                     operatorList.add(token)
                     number = 0
@@ -38,7 +39,7 @@ public class Calculator {
         return Pair(numberList, operatorList)
     }
 
-    private fun operate(numberList: MutableList<Int>, operatorList: MutableList<Char>): Double {
+    fun operate(numberList: MutableList<Int>, operatorList: MutableList<Char>): Double {
         var result : Double = numberList[0].toDouble()
         for (i in 1 until numberList.size) {
             result = when (operatorList[i - 1]) {
@@ -54,7 +55,6 @@ public class Calculator {
 }
 
 fun main() {
-    val calculator = Calculator()
     val argument = readln()
-    println(calculator.drive(argument))
+    println(Calculator.drive(argument))
 }
