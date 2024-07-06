@@ -39,6 +39,6 @@ class PersonTest {
         val person1 = Person(nickname = "Jean", name = "박홍진", age = 35)
         val person2 = person1.copy(name = "원동재")
 
-        assertThat(person2).isEqualTo("원동재")
+        assertThat(person2.name).isEqualTo("원동재")
     }
 }
