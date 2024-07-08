@@ -1,12 +1,4 @@
 object FormulaParser {
-    const val PLUS = "+"
-    const val MINUS = "-"
-    const val MULTIPLY = "*"
-    const val DIVIDE = "/"
-
-    private const val REG_VALID_PATTERN = "[0-9 +\\-*/.]*"
-    private const val REG_SPLIT_PATTERN = "(?<=[-+*/])|(?=[-+*/])"
-
     const val ERR_NULL_OR_EMPTY = "수식은 null이거나 비어있을 수 없음"
     const val ERR_CHAR_VALID = "수식에 잘못된 문자가 포함됨"
     const val ERR_OPERATOR_PAIR = "연산자와 숫자 쌍이 맞지 않음"
@@ -30,13 +22,13 @@ object FormulaParser {
     }
 
     fun checkCharValid(formula: String) {
-        val regex = Regex(REG_VALID_PATTERN)
+        val regex = Regex(Operator.validPattern)
         if (!regex.matches(formula))
             throw IllegalArgumentException(ERR_CHAR_VALID)
     }
 
     fun splitByOperator(formula: String): List<String> {
-        val regex = Regex(REG_SPLIT_PATTERN)
+        val regex = Regex(Operator.splitPattern)
         return formula.split(regex).map { it.trim() }.filter { it.isNotEmpty() }
     }
 
@@ -49,7 +41,8 @@ object FormulaParser {
     }
 
     fun checkOperator(split: String) {
-        if (split !in listOf(PLUS, MINUS, MULTIPLY, DIVIDE))
+        val operator = Operator.fromSymbol(split)
+        if (operator !in listOf(Operator.PLUS, Operator.MINUS, Operator.MULTIPLY, Operator.DIVIDE))
             throw IllegalArgumentException(ERR_OPERATOR_STRING)
     }
 
