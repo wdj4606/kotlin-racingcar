@@ -7,13 +7,9 @@ object FormulaParser {
     const val ERR_DIVIDE_BY_ZERO = "0으로 나눔"
 
     fun execute(formula: String?): List<String> {
-        if (formula == null) {
-            throw IllegalArgumentException(ERR_NULL_OR_EMPTY)
-        }
+        require(!formula.isNullOrEmpty()) { ERR_NULL_OR_EMPTY }
         val trimmedFormula = formula.trim()
-        if (trimmedFormula.isEmpty()) {
-            throw IllegalArgumentException(ERR_NULL_OR_EMPTY)
-        }
+        require(trimmedFormula.isNotEmpty()) { ERR_NULL_OR_EMPTY }
 
         checkCharValid(trimmedFormula)
         val splits = splitByOperator(trimmedFormula)
@@ -23,8 +19,7 @@ object FormulaParser {
 
     fun checkCharValid(formula: String) {
         val regex = Regex(Operator.validPattern)
-        if (!regex.matches(formula))
-            throw IllegalArgumentException(ERR_CHAR_VALID)
+        require(regex.matches(formula)) { ERR_CHAR_VALID }
     }
 
     fun splitByOperator(formula: String): List<String> {
@@ -42,14 +37,11 @@ object FormulaParser {
 
     fun checkOperator(split: String) {
         val operator = Operator.fromSymbol(split)
-        if (operator !in listOf(Operator.PLUS, Operator.MINUS, Operator.MULTIPLY, Operator.DIVIDE))
-            throw IllegalArgumentException(ERR_OPERATOR_STRING)
+        require(operator in listOf(Operator.PLUS, Operator.MINUS, Operator.MULTIPLY, Operator.DIVIDE)) { ERR_OPERATOR_STRING }
     }
 
     fun checkSplitStringOrder(splits: List<String>) {
-        if (splits.size % 2 == 0) {
-            throw IllegalArgumentException(ERR_OPERATOR_PAIR)
-        }
+        require(splits.size % 2 != 0) { ERR_OPERATOR_PAIR }
 
         try {
             splits.mapIndexed { index, value ->
