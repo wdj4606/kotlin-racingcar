@@ -44,12 +44,16 @@ object FormulaParser {
         require(splits.size % 2 != 0) { ERR_OPERATOR_PAIR }
 
         try {
-            splits.mapIndexed { index, value ->
-                if (index % 2 == 1) checkOperator(value)
-                else convertNumber(value)
-            }
+            trySplitsConvert(splits)
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException(ERR_OPERATOR_PAIR)
+        }
+    }
+
+    private fun trySplitsConvert(splits: List<String>) {
+        splits.mapIndexed { index, value ->
+            if (index % 2 == 1) checkOperator(value)
+            else convertNumber(value)
         }
     }
 

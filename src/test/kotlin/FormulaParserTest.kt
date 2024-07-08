@@ -21,6 +21,11 @@ class FormulaParserTest {
         }.isInstanceOf(IllegalArgumentException::class.java)
             .hasMessageMatching(FormulaParser.ERR_NULL_OR_EMPTY)
 
+        assertThatThrownBy {
+            FormulaParser.execute("   2 + 3 * 4 / ")
+        }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageMatching(FormulaParser.ERR_OPERATOR_PAIR)
+
         assertDoesNotThrow {
             FormulaParser.execute(" 2 + 3 * 4 / 2 ")
         }
