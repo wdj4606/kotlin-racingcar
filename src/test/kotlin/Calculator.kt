@@ -11,15 +11,19 @@ object Calculator {
             val operator = calcItems[i]
             val nextNumber = BigDecimal(calcItems[i + 1])
 
-            result = when (operator) {
-                FormulaParser.PLUS -> result + nextNumber
-                FormulaParser.MINUS -> result - nextNumber
-                FormulaParser.MULTIPLY -> result * nextNumber
-                FormulaParser.DIVIDE -> result.divide(nextNumber, 10, RoundingMode.HALF_UP)
-                else -> throw IllegalArgumentException("Unknown operator: $operator")
-            }
+            result = calculate(result, nextNumber, operator)
         }
 
         return result.toDouble()
+    }
+
+    fun calculate(a: BigDecimal, b: BigDecimal, operator: String): BigDecimal {
+        return when (operator) {
+            FormulaParser.PLUS -> a + b
+            FormulaParser.MINUS -> a - b
+            FormulaParser.MULTIPLY -> a * b
+            FormulaParser.DIVIDE -> a.divide(b, 10, RoundingMode.HALF_UP)
+            else -> throw IllegalArgumentException("Unknown operator: $operator")
+        }
     }
 }
