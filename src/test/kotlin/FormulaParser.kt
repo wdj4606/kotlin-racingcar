@@ -17,17 +17,17 @@ object FormulaParser {
         return splits
     }
 
-    fun checkCharValid(formula: String) {
+    private fun checkCharValid(formula: String) {
         val regex = Regex(Operator.validPattern)
         require(regex.matches(formula)) { ERR_CHAR_VALID }
     }
 
-    fun splitByOperator(formula: String): List<String> {
+    private fun splitByOperator(formula: String): List<String> {
         val regex = Regex(Operator.splitPattern)
         return formula.split(regex).map { it.trim() }.filter { it.isNotEmpty() }
     }
 
-    fun convertNumber(split: String): Double {
+    private fun convertNumber(split: String): Double {
         return try {
             split.toDouble()
         } catch (e: NumberFormatException) {
@@ -35,12 +35,12 @@ object FormulaParser {
         }
     }
 
-    fun checkOperator(split: String) {
+    private fun checkOperator(split: String) {
         val operator = Operator.fromSymbol(split)
         require(operator in listOf(Operator.PLUS, Operator.MINUS, Operator.MULTIPLY, Operator.DIVIDE)) { ERR_OPERATOR_STRING }
     }
 
-    fun checkSplitStringOrder(splits: List<String>) {
+    private fun checkSplitStringOrder(splits: List<String>) {
         require(splits.size % 2 != 0) { ERR_OPERATOR_PAIR }
 
         try {
@@ -53,7 +53,7 @@ object FormulaParser {
         }
     }
 
-    fun checkDivisionByZero(splits: List<String>) {
+    private fun checkDivisionByZero(splits: List<String>) {
         for (i in splits.indices) {
             if (i % 2 == 1 && splits[i] == "/" && i + 1 < splits.size && splits[i + 1].toDouble() == 0.0) {
                 throw IllegalArgumentException(ERR_DIVIDE_BY_ZERO)
