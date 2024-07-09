@@ -14,6 +14,7 @@ object FormulaParser {
         checkCharValid(trimmedFormula)
         val splits = splitByOperator(trimmedFormula)
         checkSplitStringOrder(splits)
+        checkDivisionByZero(splits)
         return splits
     }
 
