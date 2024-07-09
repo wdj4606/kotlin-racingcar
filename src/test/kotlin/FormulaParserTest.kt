@@ -24,7 +24,7 @@ class FormulaParserTest {
         assertThatThrownBy {
             FormulaParser.execute("$$")
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageMatching(FormulaParser.ERR_CHAR_VALID)
+            .hasMessageMatching(FormulaParser.ERR_NUMBER_STRING)
 
         assertDoesNotThrow {
             FormulaParser.execute(" 2 + 3 * 4 / 2 ")
@@ -39,17 +39,17 @@ class FormulaParserTest {
         assertThatThrownBy {
             FormulaParser.execute("a")
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageMatching(FormulaParser.ERR_CHAR_VALID)
+            .hasMessageMatching(FormulaParser.ERR_NUMBER_STRING)
 
         assertThatThrownBy {
             FormulaParser.execute("어디 날 한번 계산해봐")
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageMatching(FormulaParser.ERR_CHAR_VALID)
+            .hasMessageMatching(FormulaParser.ERR_NUMBER_STRING)
 
         assertThatThrownBy {
             FormulaParser.execute(" 2 + 3 * 4 / 2 ?")
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageMatching(FormulaParser.ERR_CHAR_VALID)
+            .hasMessageMatching(FormulaParser.ERR_NUMBER_STRING)
     }
 
     @Test
@@ -57,12 +57,12 @@ class FormulaParserTest {
         assertThatThrownBy {
             FormulaParser.execute("10 0")
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageMatching(FormulaParser.ERR_OPERATOR_PAIR)
+            .hasMessageMatching(FormulaParser.ERR_NUMBER_STRING)
 
         assertThatThrownBy {
             FormulaParser.execute("100.0.0")
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessageMatching(FormulaParser.ERR_OPERATOR_PAIR)
+            .hasMessageMatching(FormulaParser.ERR_NUMBER_STRING)
     }
 
     @Test
