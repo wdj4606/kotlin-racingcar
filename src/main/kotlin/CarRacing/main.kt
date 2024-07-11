@@ -4,7 +4,7 @@ import CarRacing.ResultView
 
 fun main() {
     val inputParameters = InputView.run()
-    val race = Race(inputParameters)
+    val race = Race(inputParameters.numberOfCar)
 
     ResultView.showStart()
     repeat(inputParameters.numberOfRace) {
