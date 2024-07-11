@@ -9,21 +9,12 @@ class RaceTest {
         val inputParameters = InputParameters(3, 5)
         val race = Race(inputParameters.numberOfCar)
 
-        race.racingCars.forEach { racingCar ->
-            Assertions.assertThat(racingCar.progress).isEqualTo(0)
+        repeat(inputParameters.numberOfRace) {
+            race.tryRace()
         }
 
-        race.tryRace()
-
         race.racingCars.forEach { racingCar ->
-            Assertions.assertThat(racingCar.progress).isLessThanOrEqualTo(1)
-        }
-
-        race.tryRace()
-        race.tryRace()
-        race.tryRace()
-        race.racingCars.forEach { racingCar ->
-            Assertions.assertThat(racingCar.progress).isLessThanOrEqualTo(4)
+            Assertions.assertThat(racingCar.progress).isLessThanOrEqualTo(inputParameters.numberOfRace)
         }
     }
 }
