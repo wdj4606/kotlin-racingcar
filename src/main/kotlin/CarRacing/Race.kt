@@ -1,13 +1,18 @@
 package CarRacing
 
 enum class RaceErrorMessage(val message: String) {
-    OVER_TRY("시도 횟수 초과");
+    NO_CARS("차량 없음");
 }
 
-data class Race(val numberOfCar: Int) {
-    val racingCars: List<RacingCar> = List(numberOfCar) { RacingCar() }
-
+class Race(val racingCars: List<RacingCar> = List(3) { RacingCar() }) {
     fun tryRace() {
         racingCars.forEach { racingCar -> racingCar.run() }
+    }
+
+    fun getWinners(): List<String> {
+        val maxLength = racingCars.maxOfOrNull { it.progress }
+        require(maxLength != null) { RaceErrorMessage.NO_CARS }
+        val filteredCars = racingCars.filter { it.progress == maxLength }
+        return filteredCars.map { it.carName }
     }
 }

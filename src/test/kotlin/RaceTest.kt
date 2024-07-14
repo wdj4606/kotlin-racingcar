@@ -1,20 +1,71 @@
+import CarRacing.CarEngine
 import CarRacing.InputParameters
 import CarRacing.Race
+import CarRacing.RacingCar
+import io.mockk.every
+import io.mockk.mockk
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
 class RaceTest {
     @Test
-    fun `자동차 경주 잘 진행되니?`() {
-        val inputParameters = InputParameters(3, 5)
-        val race = Race(inputParameters.numberOfCar)
+    fun `우등 자동차 경주 잘 진행되니?`() {
+        val carNames: List<String> = listOf("pobi", "crong", "honux")
+        val inputParameters = InputParameters(carNames, 5)
+        val goodEngine = mockk<CarEngine>()
+        every { goodEngine.isRunnable() } returns true
+        val racingCars: List<RacingCar> = carNames.map { RacingCar(carName = it, carEngine = goodEngine) }
+        val race = Race(racingCars)
 
         repeat(inputParameters.numberOfRace) {
             race.tryRace()
         }
 
-        race.racingCars.forEach { racingCar ->
-            Assertions.assertThat(racingCar.progress).isLessThanOrEqualTo(inputParameters.numberOfRace)
+        Assertions.assertThat(allProgressAreSame(race.racingCars)).isEqualTo(true)
+    }
+
+    @Test
+    fun `열등 자동차 경주 잘 진행되니?`() {
+        val carNames: List<String> = listOf("pobi", "crong", "honux")
+        val inputParameters = InputParameters(carNames, 5)
+        val badEngine = mockk<CarEngine>()
+        every { badEngine.isRunnable() } returns false
+        val racingCars: List<RacingCar> = carNames.map { RacingCar(carName = it, carEngine = badEngine) }
+        val race = Race(racingCars)
+
+        repeat(inputParameters.numberOfRace) {
+            race.tryRace()
         }
+
+        Assertions.assertThat(allProgressAreSame(race.racingCars)).isEqualTo(true)
+    }
+
+    private fun allProgressAreSame(list: List<RacingCar>): Boolean {
+        if (list.isEmpty()) return true
+        val firstValue = list.first()
+        return list.all { it.progress == firstValue.progress }
+    }
+
+    @Test
+    fun `pobi가 우승 함?`() {
+        val carNames: List<String> = listOf("pobi", "crong", "honux")
+        val numberOfRace = 5
+        val goodEngine = mockk<CarEngine>()
+        val badEngine = mockk<CarEngine>()
+        every { goodEngine.isRunnable() } returns true
+        every { badEngine.isRunnable() } returns false
+        val car1 = RacingCar(carName = "pobi", carEngine = goodEngine)
+        val car2 = RacingCar(carName = "crong", carEngine = badEngine)
+        val car3 = RacingCar(carName = "honux", carEngine = badEngine)
+        val racingCars: List<RacingCar> = listOf(car1, car2, car3)
+        val race = Race(racingCars)
+
+        repeat(numberOfRace) {
+            race.tryRace()
+        }
+
+        val winners = race.getWinners()
+        Assertions.assertThat(winners.size).isEqualTo(1)
+        Assertions.assertThat(winners.first()).isEqualTo("pobi")
     }
 }

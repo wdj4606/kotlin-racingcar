@@ -1,16 +1,19 @@
 package CarRacing
 
-import kotlin.random.Random
-
+const val NO_NAME = "NAME"
 const val INITIAL_PROGRESS = 0
-const val RANDOM_STT = 0
-const val RANDOM_END = 9
 const val THRESHOLD_VALUE = 4
 
-data class RacingCar(var progress: Int = INITIAL_PROGRESS) {
+class RacingCar(val carName: String = NO_NAME, var progress: Int = INITIAL_PROGRESS, val carEngine: CarEngine = CarEngine()) {
+    companion object {
+        private const val ERR_NAME_LENGTH = "자동차 이름은 5자를 초과할 수 없습니다"
+    }
+    init {
+        require(carName.length <= 5) { ERR_NAME_LENGTH }
+    }
+
     fun run() {
-        val random = Random.nextInt(RANDOM_STT, RANDOM_END)
-        if (random >= THRESHOLD_VALUE)
+        if (carEngine.isRunnable())
             progress += 1
     }
 }
