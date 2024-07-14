@@ -11,6 +11,8 @@ object InputView {
     private const val ERR_INPUT_POSITIVE_INTEGER = "양의 정수 입력 실패"
     private const val ERR_INPUT_NUMBER_OF_RACE = "시도 횟수 입력이 정상적이지 않습니다."
 
+    private const val SEPERATOR = ","
+
     fun run(): InputParameters {
         val numberOfCar = getCarNames()
         val numberOfRace = getNumberOfRace()
@@ -20,7 +22,7 @@ object InputView {
         println(PROMPT_GET_CAR_NAMES)
         val input = readlnOrNull()
         requireNotNull(input) { ERR_INPUT_CAR_NAMES }
-        val carNames = input.split(",").map { it.trim() }
+        val carNames = input.split(SEPERATOR).map { it.trim() }
 
         carNames.forEach { name ->
             require(name.length <= 5) { ERR_NAME_LENGTH }
