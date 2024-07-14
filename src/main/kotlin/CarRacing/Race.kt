@@ -4,7 +4,7 @@ enum class RaceErrorMessage(val message: String) {
     NO_CARS("차량 없음");
 }
 
-class Race(carNames: List<String> = List(3) { "pobi" }, val racingCars: List<RacingCar> = carNames.map { RacingCar(it) }) {
+class Race(val racingCars: List<RacingCar> = List(3) { RacingCar() }) {
     fun tryRace() {
         racingCars.forEach { racingCar -> racingCar.run() }
     }
