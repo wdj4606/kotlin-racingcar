@@ -19,7 +19,7 @@ object InputView {
     private fun getCarNames(): List<String> {
         println(PROMPT_GET_CAR_NAMES)
         val input = readlnOrNull()
-        require(input != null) { ERR_INPUT_CAR_NAMES }
+        requireNotNull(input) { ERR_INPUT_CAR_NAMES }
         val carNames = input.split(",").map { it.trim() }
 
         carNames.forEach { name ->
