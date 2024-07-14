@@ -21,9 +21,7 @@ class RaceTest {
             race.tryRace()
         }
 
-        race.racingCars.forEach { racingCar ->
-            Assertions.assertThat(racingCar.progress).isEqualTo(inputParameters.numberOfRace)
-        }
+        Assertions.assertThat(allProgressAreSame(race.racingCars)).isEqualTo(true)
     }
 
     @Test
@@ -39,8 +37,12 @@ class RaceTest {
             race.tryRace()
         }
 
-        race.racingCars.forEach { racingCar ->
-            Assertions.assertThat(racingCar.progress).isEqualTo(0)
-        }
+        Assertions.assertThat(allProgressAreSame(race.racingCars)).isEqualTo(true)
+    }
+
+    private fun allProgressAreSame(list: List<RacingCar>): Boolean {
+        if (list.isEmpty()) return true
+        val firstValue = list.first()
+        return list.all { it.progress == firstValue.progress }
     }
 }
