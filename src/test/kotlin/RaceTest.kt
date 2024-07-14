@@ -45,4 +45,27 @@ class RaceTest {
         val firstValue = list.first()
         return list.all { it.progress == firstValue.progress }
     }
+
+    @Test
+    fun `pobi가 우승 함?`() {
+        val carNames: List<String> = listOf("pobi", "crong", "honux")
+        val numberOfRace = 5
+        val goodEngine = mockk<CarEngine>()
+        val badEngine = mockk<CarEngine>()
+        every { goodEngine.isRunnable() } returns true
+        every { badEngine.isRunnable() } returns false
+        val car1 = RacingCar(carName = "pobi", carEngine = goodEngine)
+        val car2 = RacingCar(carName = "crong", carEngine = badEngine)
+        val car3 = RacingCar(carName = "honux", carEngine = badEngine)
+        val racingCars: List<RacingCar> = listOf(car1, car2, car3)
+        val race = Race(racingCars)
+
+        repeat(numberOfRace) {
+            race.tryRace()
+        }
+
+        val winners = race.getWinners()
+        Assertions.assertThat(winners.size).isEqualTo(1)
+        Assertions.assertThat(winners.first()).isEqualTo("pobi")
+    }
 }
