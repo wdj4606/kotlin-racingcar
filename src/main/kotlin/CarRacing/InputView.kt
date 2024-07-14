@@ -7,7 +7,6 @@ object InputView {
     private const val PROMPT_GET_NUMBER_OF_RACE = "시도할 횟수는 몇 회인가요?"
 
     private const val ERR_INPUT_CAR_NAMES = "자동차 이름 입력 실패"
-    private const val ERR_NAME_LENGTH = "자동차 이름은 5자를 초과할 수 없습니다"
     private const val ERR_INPUT_POSITIVE_INTEGER = "양의 정수 입력 실패"
     private const val ERR_INPUT_NUMBER_OF_RACE = "시도 횟수 입력이 정상적이지 않습니다."
 
@@ -23,10 +22,6 @@ object InputView {
         val input = readlnOrNull()
         requireNotNull(input) { ERR_INPUT_CAR_NAMES }
         val carNames = input.split(SEPERATOR).map { it.trim() }
-
-        carNames.forEach { name ->
-            require(name.length <= 5) { ERR_NAME_LENGTH }
-        }
         return carNames
     }
 
