@@ -14,9 +14,9 @@ object InputView {
     private const val SEPERATOR = ","
 
     fun run(): InputParameters {
-        val numberOfCar = getCarNames()
+        val carNames = getCarNames()
         val numberOfRace = getNumberOfRace()
-        return InputParameters(numberOfCar, numberOfRace)
+        return InputParameters(carNames, numberOfRace)
     }
     private fun getCarNames(): List<String> {
         println(PROMPT_GET_CAR_NAMES)
