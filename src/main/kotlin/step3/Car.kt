@@ -1,9 +1,12 @@
 package step3
 
-class Car(var position : Int = Constants.INITIAL_POSITION) {
+private const val MOVE_CONDITION = 4
+private const val INITIAL_POSITION = 0
+
+class Car(var position : Int = INITIAL_POSITION) {
 
         fun move(random : Int) {
-            if (random >= Constants.MOVE_CONDITION) {
+            if (random >= MOVE_CONDITION) {
                 position++
             }
     }

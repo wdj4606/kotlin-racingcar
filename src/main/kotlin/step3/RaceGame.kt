@@ -1,20 +1,37 @@
 package step3
 
-class RaceGame(private val cars: List<Car>, private val rounds: Int) {
+private const val RANDOM_MAX = 9
+private const val RANDOM_MIN = 0
 
-    fun runRace(): List<List<Car>> {
-        val raceResult = mutableListOf<List<Car>>()
+data class CarList(val carList: List<Car>)
+
+class RaceGame(private var cars: CarList, private val rounds: Int) {
+
+    fun runRace(): List<CarList> {
+        val result = mutableListOf<CarList>()
+
         repeat(rounds) {
-            cars.forEach { car ->
-                car.move(randomMove())
-            }
-            val movedCars = cars.map { Car(it.position) }
-            raceResult.add(movedCars)
+            runRound()
+            result.add(CarList(copyCars(cars).carList))
         }
-        return raceResult
+
+        return result
+    }
+
+    private fun runRound() {
+        val movedCars = cars.carList.map { car ->
+            car.move(randomMove())
+            car
+        }
+        cars = CarList(movedCars)
+    }
+
+    private fun copyCars(cars: CarList): CarList {
+        val copiedCars = cars.carList.map { Car(it.position) }
+        return CarList(copiedCars)
     }
 
     private fun randomMove(): Int {
-        return (Constants.RANDOM_MIN..Constants.RANDOM_MAX).random()
+        return (RANDOM_MIN..RANDOM_MAX).random()
     }
 }
