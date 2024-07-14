@@ -12,37 +12,37 @@ class CalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["", "  "])
     fun `null 또는 공백 문자열에 대해 EmptyExpressionException 반환`(input: String) {
-        assertThatExceptionOfType(EmptyExpressionException::class.java)
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { calculate(input) }
-            .withMessage("수식은 null이거나 공백일 수 없습니다")
+            .withMessage(ExceptionType.EMPTY_EXPRESSION)
     }
 
     @Test
     fun `잘못된 형식의 수식에 대해 InvalidExpressionException 반환`() {
-        assertThatExceptionOfType(InvalidExpressionException::class.java)
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { calculate("2 + + 3") }
-            .withMessage("잘못된 수식 형식입니다")
+            .withMessage(ExceptionType.INVALID_EXPRESSION)
     }
 
     @Test
     fun `잘못된 숫자에 대해 InvalidNumberException 반환`() {
-        assertThatExceptionOfType(InvalidNumberException::class.java)
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { calculate("2 + a") }
-            .withMessage("잘못된 숫자: a")
+            .withMessage(ExceptionType.INVALID_NUMBER)
     }
 
     @Test
     fun `잘못된 연산자에 대해 InvalidOperatorException 반환`() {
-        assertThatExceptionOfType(InvalidOperatorException::class.java)
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { calculate("2 ^ 3") }
-            .withMessage("잘못된 연산자: ^")
+            .withMessage(ExceptionType.INVALID_OPERATOR)
     }
 
     @Test
     fun `0으로 나눌 때 DivisionByZeroException 반환`() {
-        assertThatExceptionOfType(DivisionByZeroException::class.java)
+        assertThatExceptionOfType(IllegalArgumentException::class.java)
             .isThrownBy { calculate("10 / 0") }
-            .withMessage("0으로 나눌 수 없습니다")
+            .withMessage(ExceptionType.DIVISION_BY_ZERO)
     }
 
     @Test
