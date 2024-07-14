@@ -23,3 +23,9 @@ object InputView {
         return input.toInt()
     }
 }
+
+object ResultView {
+    fun printWinners(winners: String) {
+        print(WINNER.format(winners))
+    }
+}
