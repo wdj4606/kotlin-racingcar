@@ -1,11 +1,13 @@
 package step3
 
-private const val RANDOM_MAX = 9
-private const val RANDOM_MIN = 0
-
 data class CarList(val carList: List<Car>)
 
 class RaceGame(private var cars: CarList, private val rounds: Int) {
+
+    companion object {
+        private const val RANDOM_MAX = 9
+        private const val RANDOM_MIN = 0
+    }
 
     fun runRace(): List<CarList> {
         val result = mutableListOf<CarList>()
