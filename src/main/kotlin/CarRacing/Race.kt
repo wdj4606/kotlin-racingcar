@@ -15,7 +15,7 @@ class Race(val racingCars: List<RacingCar> = List(3) { RacingCar() }) {
 
     fun tryAffterRandom() {
         tryRandom()
-        tryRandom()
+        tryRace()
     }
 
     fun getWinners(): List<String> {
