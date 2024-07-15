@@ -2,6 +2,7 @@ package step4
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import step4.ExceptionType.ERROR_TRY_COUNT
 import java.io.ByteArrayInputStream
 
 class RaceGameTest {

@@ -1,12 +1,14 @@
 package step4
 
-private const val RANDOM_MAX = 9
-private const val RANDOM_MIN = 0
-private const val NAME_SIZE_LIMIT = 5
-
-private const val ERROR_CAR_NAME = "자동차 이름은 5자를 초과할 수 없습니다."
+import step4.ExceptionType.ERROR_CAR_NAME
 
 class RaceGame(private val carNames: List<String>, private val tryCount: Int) {
+    companion object {
+        private const val RANDOM_MAX = 9
+        private const val RANDOM_MIN = 0
+        private const val NAME_SIZE_LIMIT = 5
+    }
+
     private val cars: List<Car>
 
     init
