@@ -1,6 +1,6 @@
-package CarRacing
+package CarRacing.View
 
-data class InputParameters(val carNames: List<String>, val numberOfRace: Int)
+import CarRacing.Domain.InputParameters
 
 object InputView {
     private const val PROMPT_GET_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분):"

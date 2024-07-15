@@ -1,4 +1,4 @@
-package CarRacing
+package CarRacing.Domain
 
 class CarEngine(var random: Int = 0) {
     fun isRunnable(): Boolean {

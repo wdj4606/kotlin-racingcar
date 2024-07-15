@@ -1,5 +1,5 @@
-import CarRacing.CarEngine
-import CarRacing.RacingCar
+import CarRacing.Domain.CarEngine
+import CarRacing.Domain.RacingCar
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 

@@ -1,7 +1,7 @@
-import CarRacing.CarEngine
-import CarRacing.InputParameters
-import CarRacing.Race
-import CarRacing.RacingCar
+import CarRacing.Domain.CarEngine
+import CarRacing.Domain.Race
+import CarRacing.Domain.RacingCar
+import CarRacing.View.InputParameters
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
