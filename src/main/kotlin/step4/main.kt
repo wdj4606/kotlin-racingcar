@@ -8,6 +8,6 @@ fun main() {
 
     val game = RaceGame(cars, tryCount)
     val winners = game.playGame()
-
+    ResultView.printHistory(game.getRaceHistory())
     ResultView.printWinners(winners)
 }

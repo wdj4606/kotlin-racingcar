@@ -1,32 +1,35 @@
 package step4
 
-class RaceGame(private val cars: List<Car>, private val tryCount: Int) {
+data class RoundSet(val carList: List<Car>)
+
+class RaceGame(private val cars: List<Car>, private val rounds: Int) {
     companion object {
         private const val RANDOM_MAX = 9
         private const val RANDOM_MIN = 0
     }
 
+    private val raceHistory = mutableListOf<RoundSet>()
+
+    fun getRaceHistory(): List<RoundSet> {
+        return raceHistory
+    }
+
     fun playGame(): String {
-        for (i in 1..tryCount) {
+        raceHistory.clear()
+        repeat(rounds) {
             moveCars()
-            printCurrentPositions()
         }
         return determineWinners()
     }
 
     private fun moveCars() {
         cars.forEach { it.move(randomMove()) }
+        val movedCars = cars.map { Car(it.name, it.position) }
+        raceHistory.add(RoundSet(movedCars))
     }
 
     private fun randomMove(): Int {
         return (RANDOM_MIN..RANDOM_MAX).random()
-    }
-
-    private fun printCurrentPositions() {
-        cars.forEach {
-            println("${it.name} : ${"-".repeat(it.position)}")
-        }
-        println()
     }
 
     private fun determineWinners(): String {
