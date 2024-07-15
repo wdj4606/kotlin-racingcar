@@ -1,7 +1,7 @@
-import CarRacing.InputView
-import CarRacing.Race
-import CarRacing.RacingCar
-import CarRacing.ResultView
+import CarRacing.Domain.Race
+import CarRacing.Domain.RacingCar
+import CarRacing.View.InputView
+import CarRacing.View.ResultView
 
 fun main() {
     val inputParameters = InputView.run()
@@ -10,7 +10,7 @@ fun main() {
 
     ResultView.showStart()
     repeat(inputParameters.numberOfRace) {
-        race.tryRace()
+        race.tryAffterRandom()
         ResultView.showRaceSnapShot(race)
     }
     ResultView.showResult(race)

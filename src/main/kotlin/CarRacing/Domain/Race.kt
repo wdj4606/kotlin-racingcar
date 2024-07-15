@@ -1,4 +1,4 @@
-package CarRacing
+package CarRacing.Domain
 
 enum class RaceErrorMessage(val message: String) {
     NO_CARS("차량 없음");
@@ -7,6 +7,15 @@ enum class RaceErrorMessage(val message: String) {
 class Race(val racingCars: List<RacingCar> = List(3) { RacingCar() }) {
     fun tryRace() {
         racingCars.forEach { racingCar -> racingCar.run() }
+    }
+
+    fun tryRandom() {
+        racingCars.forEach { racingCar -> racingCar.random() }
+    }
+
+    fun tryAffterRandom() {
+        tryRandom()
+        tryRace()
     }
 
     fun getWinners(): List<String> {

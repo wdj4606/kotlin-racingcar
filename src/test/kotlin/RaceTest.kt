@@ -1,9 +1,7 @@
-import CarRacing.CarEngine
-import CarRacing.InputParameters
-import CarRacing.Race
-import CarRacing.RacingCar
-import io.mockk.every
-import io.mockk.mockk
+import CarRacing.Domain.CarEngine
+import CarRacing.Domain.Race
+import CarRacing.Domain.RacingCar
+import CarRacing.View.InputParameters
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -12,8 +10,7 @@ class RaceTest {
     fun `우등 자동차 경주 잘 진행되니?`() {
         val carNames: List<String> = listOf("pobi", "crong", "honux")
         val inputParameters = InputParameters(carNames, 5)
-        val goodEngine = mockk<CarEngine>()
-        every { goodEngine.isRunnable() } returns true
+        val goodEngine = CarEngine(9)
         val racingCars: List<RacingCar> = carNames.map { RacingCar(carName = it, carEngine = goodEngine) }
         val race = Race(racingCars)
 
@@ -28,8 +25,7 @@ class RaceTest {
     fun `열등 자동차 경주 잘 진행되니?`() {
         val carNames: List<String> = listOf("pobi", "crong", "honux")
         val inputParameters = InputParameters(carNames, 5)
-        val badEngine = mockk<CarEngine>()
-        every { badEngine.isRunnable() } returns false
+        val badEngine = CarEngine(1)
         val racingCars: List<RacingCar> = carNames.map { RacingCar(carName = it, carEngine = badEngine) }
         val race = Race(racingCars)
 
@@ -48,12 +44,9 @@ class RaceTest {
 
     @Test
     fun `pobi가 우승 함?`() {
-        val carNames: List<String> = listOf("pobi", "crong", "honux")
         val numberOfRace = 5
-        val goodEngine = mockk<CarEngine>()
-        val badEngine = mockk<CarEngine>()
-        every { goodEngine.isRunnable() } returns true
-        every { badEngine.isRunnable() } returns false
+        val goodEngine = CarEngine(8)
+        val badEngine = CarEngine(3)
         val car1 = RacingCar(carName = "pobi", carEngine = goodEngine)
         val car2 = RacingCar(carName = "crong", carEngine = badEngine)
         val car3 = RacingCar(carName = "honux", carEngine = badEngine)
