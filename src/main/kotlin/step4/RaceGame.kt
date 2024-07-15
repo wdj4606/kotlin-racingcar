@@ -40,7 +40,7 @@ class RaceGame(private val cars: List<Car>, private val rounds: Int) {
 
     private fun getMaxPosition(): Int {
         return cars.map { it.position }
-            .maxOrNull()!!
+            .maxOrNull() ?: throw IllegalStateException(ERROR_EMPTY_CAR_LIST)
     }
 
     private fun getWinners(maxPosition: Int): String =
