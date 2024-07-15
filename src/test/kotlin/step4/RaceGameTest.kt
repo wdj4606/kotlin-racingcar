@@ -33,7 +33,8 @@ class RaceGameTest {
     fun `게임 테스트`() {
         val carNames = listOf("Peter", "Jin", "Makto")
         val tryCount = 5
-        val game = RaceGame(carNames, tryCount)
+        val cars = carNames.map { Car(it) }
+        val game = RaceGame(cars, tryCount)
 
         game.playGame()
     }

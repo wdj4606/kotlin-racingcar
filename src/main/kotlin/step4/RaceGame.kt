@@ -1,28 +1,9 @@
 package step4
 
-import step4.ExceptionType.ERROR_CAR_NAME
-
-class RaceGame(private val carNames: List<String>, private val tryCount: Int) {
+class RaceGame(private val cars: List<Car>, private val tryCount: Int) {
     companion object {
         private const val RANDOM_MAX = 9
         private const val RANDOM_MIN = 0
-        private const val NAME_SIZE_LIMIT = 5
-    }
-
-    private val cars: List<Car>
-
-    init
-    {
-        fun validate(carName: String) {
-            require(carName.length <= NAME_SIZE_LIMIT) { ERROR_CAR_NAME }
-        }
-
-        fun validateCarNames() {
-            carNames.forEach { validate(it) }
-        }
-
-        validateCarNames()
-        cars = carNames.map { Car(it) }
     }
 
     fun playGame(): String {
