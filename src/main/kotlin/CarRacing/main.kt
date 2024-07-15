@@ -10,7 +10,7 @@ fun main() {
 
     ResultView.showStart()
     repeat(inputParameters.numberOfRace) {
-        race.tryRace()
+        race.tryAffterRandom()
         ResultView.showRaceSnapShot(race)
     }
     ResultView.showResult(race)
