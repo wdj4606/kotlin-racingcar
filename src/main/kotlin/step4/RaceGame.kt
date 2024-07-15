@@ -1,5 +1,7 @@
 package step4
 
+import step4.ExceptionType.ERROR_EMPTY_CAR_LIST
+
 data class RoundSet(val carList: List<Car>)
 
 class RaceGame(private val cars: List<Car>, private val rounds: Int) {
