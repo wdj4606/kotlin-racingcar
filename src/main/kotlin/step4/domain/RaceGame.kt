@@ -1,10 +1,10 @@
-package step4
+package step4.domain
 
 import step4.ExceptionType.ERROR_EMPTY_CAR_LIST
 
-data class RoundSet(val carList: List<Car>)
+data class RoundSet(val carList: List<RacingCar>)
 
-class RaceGame(private val cars: List<Car>, private val rounds: Int) {
+class RaceGame(private val cars: List<RacingCar>, private val rounds: Int) {
     private val raceHistory = mutableListOf<RoundSet>()
 
     fun getRaceHistory(): List<RoundSet> {
@@ -20,13 +20,9 @@ class RaceGame(private val cars: List<Car>, private val rounds: Int) {
     }
 
     private fun moveCars() {
-        cars.forEach { it.move(randomMove()) }
-        val movedCars = cars.map { Car(it.name, it.position) }
+        cars.forEach { it.play() }
+        val movedCars = cars.map { RacingCar(it.getCarName(), it.position) }
         raceHistory.add(RoundSet(movedCars))
-    }
-
-    private fun randomMove(): Int {
-        return (RANDOM_MIN..RANDOM_MAX).random()
     }
 
     private fun determineWinners(): String {
@@ -42,10 +38,5 @@ class RaceGame(private val cars: List<Car>, private val rounds: Int) {
 
     private fun getWinners(maxPosition: Int): String =
         cars.filter { it.position == maxPosition }
-            .joinToString(", ") { it.name }
-
-    companion object {
-        private const val RANDOM_MAX = 9
-        private const val RANDOM_MIN = 0
-    }
+            .joinToString(", ") { it.getCarName() }
 }
