@@ -5,10 +5,12 @@ fun main() {
     val roundCount = InputView.getRoundCount()
 
     val cars = List(carCount) { Car() }
-    val game = RaceGame(cars, roundCount)
+    val game = RaceGame(CarList(cars), roundCount)
 
     val raceResults = game.runRace()
 
     println("실행 결과")
-    raceResults.forEach { ResultView.printRoundResult(it) }
+    raceResults.forEach { result ->
+        ResultView.printRoundResult(result.carList)
+    }
 }

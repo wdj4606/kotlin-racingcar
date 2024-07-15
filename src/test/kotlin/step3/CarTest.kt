@@ -7,7 +7,7 @@ class CarTest {
 
     @Test
     fun `랜덤 숫자가 4 이상일 때 자동차가 전진한다`() {
-        val car = Car(Constants.INITIAL_POSITION)
+        val car = Car()
         val initialPosition = car.position
 
         car.move(4)
@@ -22,7 +22,7 @@ class CarTest {
 
     @Test
     fun `랜덤 숫자가 4 미만일 때 자동차가 전진하지 않는다`() {
-        val car = Car(Constants.INITIAL_POSITION)
+        val car = Car()
         val initialPosition = car.position
 
         car.move(0)
