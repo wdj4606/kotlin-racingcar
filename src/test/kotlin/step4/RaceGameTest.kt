@@ -1,8 +1,7 @@
 package step4
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
-import step4.domain.Car
 import step4.domain.RaceGame
 import step4.domain.RacingCar
 import step4.domain.Randomizer
@@ -20,27 +19,31 @@ class RaceGameTest {
         val winners = game.playGame()
         ResultView.printHistory(game.getRaceHistory())
         ResultView.printWinners(winners)
-    }
 
-    @Test
-    fun `car 생성 시 이름 유효성 검사`() {
-        val invalidName = "5글자가넘는이름"
-        val validName = "12345"
-
-        assertThrows<IllegalArgumentException> {
-            Car(invalidName)
-        }
-
-        Car(validName)
+        assertThat(winners).isNotEmpty()
     }
 
     @Test
     fun `getRandom 함수 테스트`() {
         val randomNumber = Randomizer.getRandom()
+        assertThat(randomNumber in Randomizer.RANDOM_MIN..Randomizer.RANDOM_MAX).isTrue()
+    }
 
-        assert(randomNumber in Randomizer.RANDOM_MIN..Randomizer.RANDOM_MAX) {
-            "생성된 숫자 $randomNumber 는 범위를 벗어났습니다. " +
-                "[${Randomizer.RANDOM_MIN}, ${Randomizer.RANDOM_MAX}]"
-        }
+    @Test
+    fun `4 이상일때 전진`() {
+        val car = RacingCar("test")
+        val location = car.position
+
+        car.play(4)
+        assertThat(car.position).isEqualTo(location + 1)
+    }
+
+    @Test
+    fun `3 이하일때 정지`() {
+        val car = RacingCar("test")
+        val location = car.position
+
+        car.play(3)
+        assertThat(car.position).isEqualTo(location)
     }
 }

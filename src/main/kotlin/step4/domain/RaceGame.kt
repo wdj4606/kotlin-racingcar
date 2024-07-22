@@ -1,6 +1,7 @@
 package step4.domain
 
 import step4.ExceptionType.ERROR_EMPTY_CAR_LIST
+import step4.domain.Randomizer.getRandom
 
 data class RoundSet(val carList: List<RacingCar>)
 
@@ -20,8 +21,8 @@ class RaceGame(private val cars: List<RacingCar>, private val rounds: Int) {
     }
 
     private fun moveCars() {
-        cars.forEach { it.play() }
-        val movedCars = cars.map { RacingCar(it.getCarName(), it.position) }
+        cars.forEach { it.play(getRandom()) }
+        val movedCars = cars.map { RacingCar(it.name, it.position) }
         raceHistory.add(RoundSet(movedCars))
     }
 
@@ -38,5 +39,5 @@ class RaceGame(private val cars: List<RacingCar>, private val rounds: Int) {
 
     private fun getWinners(maxPosition: Int): String =
         cars.filter { it.position == maxPosition }
-            .joinToString(", ") { it.getCarName() }
+            .joinToString(", ") { it.name }
 }

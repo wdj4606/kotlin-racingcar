@@ -1,13 +1,8 @@
 package step4.domain
 
-import step4.domain.Randomizer.getRandom
+class RacingCar(carName: String, var position: Int = INITIAL_POSITION) : Car(carName) {
 
-class RacingCar(private val carName: String, var position: Int = INITIAL_POSITION) : Car(carName) {
-    fun getCarName(): String {
-        return carName
-    }
-
-    fun play() {
-        if (isRunnable(getRandom())) position++
+    override fun play(random: Int) {
+        if (isRunnable(random)) position++
     }
 }

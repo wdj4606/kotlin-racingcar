@@ -14,7 +14,7 @@ object ResultView {
 
     fun printPosition(roundSet: RoundSet) {
         roundSet.carList.forEach { car ->
-            println("${car.getCarName()}: ${"-".repeat(car.position)}")
+            println("${car.name}: ${"-".repeat(car.position)}")
         }
         println()
     }
