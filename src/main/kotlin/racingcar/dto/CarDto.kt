@@ -1,3 +1,3 @@
 package racingcar.dto
 
-data class CarDto(val position: Int)
+data class CarDto(val name: String, val position: Int)

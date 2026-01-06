@@ -3,12 +3,19 @@ package racingcar.model
 import racingcar.dto.CarDto
 
 class Car(
-    movableStrategy: RandomMovableStrategy = RandomMovableStrategy(),
-) : Movable() {
-    init {
-        setMovableStrategy(movableStrategy)
+    val name: String,
+    private val movableStrategy: MovableStrategy = RandomMovableStrategy(),
+) {
+    var position: Int = 0
+        private set
+
+    fun move() {
+        if (movableStrategy.isMovable()) {
+            position++
+        }
     }
+
     fun toDto(): CarDto {
-        return CarDto(position)
+        return CarDto(name, position)
     }
 }
